@@ -1,0 +1,122 @@
+{
+  "subject": "Medicine",
+  "author": "Boloor",
+  "totalChapters": 20,
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Cardiology",
+      "topics": [
+        {
+          "id": "card-001",
+          "title": "Ischemic Heart Disease",
+          "keyPoints": [
+            "Risk factors: HTN, DM, smoking, dyslipidemia, family history",
+            "Clinical presentation: Chest pain, dyspnea, diaphoresis",
+            "Diagnosis: ECG changes, cardiac biomarkers (Troponin), coronary angiography",
+            "Management: MONA (Morphine, Oxygen, Nitrates, Aspirin), PCI, CABG",
+            "Secondary prevention: Dual antiplatelet therapy, statins, ACE inhibitors"
+          ],
+          "mnemonics": {
+            "MONA": "Initial management of MI - Morphine, Oxygen, Nitrates, Aspirin",
+            "HEART": "Risk stratification - History, ECG, Age, Risk factors, Troponin"
+          },
+          "practiceQuestions": [
+            {
+              "question": "A 55-year-old male presents with crushing chest pain radiating to left arm for 2 hours. ECG shows ST elevation in leads II, III, aVF. What is the most likely diagnosis?",
+              "options": [
+                "Anterior wall MI",
+                "Inferior wall MI",
+                "Unstable angina",
+                "Pericarditis"
+              ],
+              "correctAnswer": 1,
+              "explanation": "ST elevation in leads II, III, aVF indicates inferior wall myocardial infarction, typically due to right coronary artery occlusion."
+            }
+          ]
+        },
+        {
+          "id": "card-002",
+          "title": "Heart Failure",
+          "keyPoints": [
+            "Classification: Systolic (HFrEF) vs Diastolic (HFpEF)",
+            "NYHA functional classification: I-IV based on symptoms",
+            "Diagnosis: Clinical + Echo (EF assessment) + BNP/NT-proBNP",
+            "Management: ACE-I/ARB, Beta-blockers, Diuretics, Aldosterone antagonists",
+            "Advanced: CRT, ICD, LVAD, heart transplant"
+          ],
+          "mnemonics": {
+            "FACES": "Common causes - Failure (pump), Arrhythmia, Coronary, Endocrine, Septal defects"
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Respiratory Medicine",
+      "topics": [
+        {
+          "id": "resp-001",
+          "title": "Asthma",
+          "keyPoints": [
+            "Reversible airway obstruction with bronchial hyperresponsiveness",
+            "Triggers: Allergens, exercise, cold air, infections, NSAIDs",
+            "Diagnosis: Spirometry (FEV1/FVC <70%, reversibility >12%)",
+            "Step-wise management: SABA → ICS → LABA + ICS → add-ons",
+            "Acute exacerbation: Oxygen, nebulized bronchodilators, steroids"
+          ],
+          "mnemonics": {
+            "ASTHMA": "Triggers - Allergens, Smoke, Temperature, Hormones, Meds, Activity"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Gastroenterology",
+      "topics": [
+        {
+          "id": "gi-001",
+          "title": "Peptic Ulcer Disease",
+          "keyPoints": [
+            "Causes: H. pylori (most common), NSAIDs, stress",
+            "DU: Pain 2-3 hrs after meals, relieved by food",
+            "GU: Pain worsened by food",
+            "Diagnosis: Endoscopy with biopsy, H. pylori testing",
+            "Treatment: PPI + H. pylori eradication (triple/quadruple therapy)"
+          ],
+          "mnemonics": {
+            "GASTRIC": "Causes of ulcers - Gastrinoma, Aspirin/NSAIDs, Smoking, Trauma, Reflux, Infection (H. pylori), Corticosteroids"
+          }
+        }
+      ]
+    }
+  ],
+  "quickRevision": {
+    "highYieldTopics": [
+      "Acute Coronary Syndrome management",
+      "Heart Failure classification and treatment",
+      "Asthma vs COPD differentiation",
+      "Diabetic emergencies (DKA, HHS)",
+      "Acute Kidney Injury staging",
+      "Stroke management (thrombolysis criteria)",
+      "Sepsis and septic shock",
+      "Electrolyte disorders"
+    ],
+    "importantDrugs": [
+      {
+        "name": "Aspirin",
+        "indication": "Antiplatelet - ACS, stroke prevention",
+        "dose": "75-325 mg/day",
+        "sideEffects": "GI bleeding, Reye's syndrome"
+      },
+      {
+        "name": "Metformin",
+        "indication": "Type 2 DM - first line",
+        "dose": "500-2000 mg/day",
+        "sideEffects": "Lactic acidosis, GI upset",
+        "contraindication": "Renal impairment (eGFR <30)"
+      }
+    ]
+  }
+}

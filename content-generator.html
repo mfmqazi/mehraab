@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Content Generator - MBBS Exam Prep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="api-key-manager.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151933;
+            --bg-tertiary: #1e2442;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --accent-purple: #667eea;
+            --accent-pink: #f093fb;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --radius-md: 1rem;
+            --radius-lg: 1.5rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .generator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .panel {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .panel h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-purple);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        select,
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.875rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        select:focus,
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        button {
+            flex: 1;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: var(--radius-md);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        button.secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .output-area {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            min-height: 400px;
+            max-height: 600px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid var(--accent-purple);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-tertiary);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .api-key-input {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .api-key-input input {
+            flex: 1;
+        }
+
+        .api-key-input button {
+            flex: 0 0 auto;
+            width: 150px;
+        }
+
+        .success-message {
+            background: rgba(72, 187, 120, 0.1);
+            border: 1px solid rgba(72, 187, 120, 0.3);
+            color: #48bb78;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .error-message {
+            background: rgba(245, 101, 101, 0.1);
+            border: 1px solid rgba(245, 101, 101, 0.3);
+            color: #f56565;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .generator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🤖 AI Content Generator</h1>
+        <p class="subtitle">Generate comprehensive study materials for MBBS exam preparation</p>
+
+        <!-- API Key Input -->
+        <div class="api-key-input">
+            <input type="password" id="apiKey" placeholder="Enter your Gemini API Key (get it from ai.google.dev)">
+            <button onclick="saveApiKey()">Save API Key</button>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="topicsGenerated">0</div>
+                <div class="stat-label">Topics Generated</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="questionsGenerated">0</div>
+                <div class="stat-label">Questions Created</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="mnemonicsGenerated">0</div>
+                <div class="stat-label">Mnemonics Added</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="filesCreated">0</div>
+                <div class="stat-label">Files Created</div>
+            </div>
+        </div>
+
+        <!-- Generator Grid -->
+        <div class="generator-grid">
+            <!-- Input Panel -->
+            <div class="panel">
+                <h2>📝 Content Configuration</h2>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" onchange="updateChapters()">
+                        <option value="medicine">Medicine (Boloor)</option>
+                        <option value="surgery">Surgery (SRB)</option>
+                        <option value="pediatrics">Pediatrics (OP Ghai)</option>
+                        <option value="obgyn">ObGyn (Datta)</option>
+                        <option value="ent">ENT (Dhingra)</option>
+                        <option value="ophthalmology">Ophthalmology (AK Khurana)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="chapter">Chapter/Topic</label>
+                    <select id="chapter">
+                        <option value="cardiology">Cardiology</option>
+                        <option value="respiratory">Respiratory Medicine</option>
+                        <option value="gastroenterology">Gastroenterology</option>
+                        <option value="nephrology">Nephrology</option>
+                        <option value="endocrinology">Endocrinology</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="specificTopic">Specific Topic (Optional)</label>
+                    <input type="text" id="specificTopic" placeholder="e.g., Myocardial Infarction">
+                </div>
+
+                <div class="form-group">
+                    <label for="numQuestions">Number of Practice Questions</label>
+                    <input type="number" id="numQuestions" value="5" min="1" max="20">
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="includeMnemonics" checked style="width: auto; margin-right: 0.5rem;">
+                        Include Mnemonics
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="includeClinicalPearls" checked
+                            style="width: auto; margin-right: 0.5rem;">
+                        Include Clinical Pearls
+                    </label>
+                </div>
+
+                <div class="button-group">
+                    <button onclick="generateContent()">🚀 Generate Content</button>
+                    <button class="secondary" onclick="generateBulk()">📦 Bulk Generate</button>
+                </div>
+
+                <div id="successMessage" class="success-message"></div>
+                <div id="errorMessage" class="error-message"></div>
+            </div>
+
+            <!-- Output Panel -->
+            <div class="panel">
+                <h2>📄 Generated Content</h2>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Generating content with AI...</p>
+                </div>
+
+                <div class="output-area" id="output">
+                    {
+                    "message": "Configure your settings and click 'Generate Content' to start",
+                    "status": "ready"
+                    }
+                </div>
+
+                <div class="button-group">
+                    <button onclick="copyToClipboard()">📋 Copy JSON</button>
+                    <button class="secondary" onclick="downloadJSON()">💾 Download</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="content-generator.js"></script>
+</body>
+
+</html>

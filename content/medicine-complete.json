@@ -1,0 +1,400 @@
+{
+    "subject": "Medicine",
+    "author": "Archith Boloor",
+    "totalChapters": 12,
+    "chapters": [
+        {
+            "id": 1,
+            "title": "Cardiology",
+            "topics": [
+                {
+                    "id": "card-001",
+                    "title": "Ischemic Heart Disease",
+                    "keyPoints": [
+                        "Risk factors: HTN, DM, smoking, dyslipidemia, family history, obesity, sedentary lifestyle",
+                        "Pathophysiology: Atherosclerotic plaque formation → coronary artery narrowing → myocardial ischemia",
+                        "Clinical presentation: Chest pain (crushing, radiating to left arm/jaw), dyspnea, diaphoresis, nausea",
+                        "Diagnosis: ECG (ST changes, T wave inversion), Cardiac biomarkers (Troponin I/T, CK-MB), Coronary angiography (gold standard)",
+                        "STEMI: ST elevation >1mm in 2 contiguous leads, requires immediate reperfusion",
+                        "NSTEMI: Elevated troponins without ST elevation, managed with antiplatelet therapy",
+                        "Unstable angina: Ischemic symptoms without biomarker elevation",
+                        "Acute management: MONA (Morphine, Oxygen, Nitrates, Aspirin) + Dual antiplatelet therapy",
+                        "Reperfusion: Primary PCI (preferred if <90 min) or Thrombolysis (if PCI not available)",
+                        "Secondary prevention: Aspirin + P2Y12 inhibitor, Beta-blockers, ACE inhibitors, Statins, Lifestyle modification"
+                    ],
+                    "mnemonics": {
+                        "MONA": "Initial MI management - Morphine (pain), Oxygen (if hypoxic), Nitrates (vasodilation), Aspirin (antiplatelet)",
+                        "HEART": "Risk stratification - History, ECG, Age, Risk factors, Troponin",
+                        "TIMI": "Thrombolysis contraindications - Time >12hrs, Intracranial pathology, Major surgery, Ischemic stroke"
+                    },
+                    "clinicalPearls": [
+                        "Silent MI common in diabetics and elderly due to autonomic neuropathy",
+                        "Posterior MI shows ST depression in V1-V3, check posterior leads (V7-V9)",
+                        "Right ventricular MI: Inferior MI + hypotension + clear lungs, avoid nitrates",
+                        "Women may present with atypical symptoms: fatigue, nausea, back pain",
+                        "Door-to-balloon time should be <90 minutes for STEMI"
+                    ],
+                    "practiceQuestions": [
+                        {
+                            "question": "A 55-year-old male with diabetes presents with crushing chest pain radiating to left arm for 2 hours. ECG shows ST elevation in leads II, III, aVF. BP is 90/60 mmHg with clear lung fields. What is the most appropriate immediate management?",
+                            "options": [
+                                "IV nitrates and morphine",
+                                "IV fluids and avoid nitrates",
+                                "Immediate thrombolysis",
+                                "Beta-blocker administration"
+                            ],
+                            "correctAnswer": 1,
+                            "explanation": "This is inferior wall MI with likely RV involvement (hypotension + clear lungs). RV infarction is preload-dependent, so IV fluids are needed. Nitrates are contraindicated as they reduce preload and can cause severe hypotension."
+                        },
+                        {
+                            "question": "A 60-year-old smoker presents with chest pain for 6 hours. ECG shows ST depression in V2-V4. Troponin I is elevated. What is the diagnosis?",
+                            "options": [
+                                "STEMI",
+                                "NSTEMI",
+                                "Unstable angina",
+                                "Stable angina"
+                            ],
+                            "correctAnswer": 1,
+                            "explanation": "NSTEMI is characterized by elevated cardiac biomarkers (troponin) with ECG changes that do not meet STEMI criteria. ST depression and T wave inversion are common findings."
+                        },
+                        {
+                            "question": "Which of the following is an absolute contraindication to thrombolytic therapy?",
+                            "options": [
+                                "Age >75 years",
+                                "Recent ischemic stroke within 3 months",
+                                "Uncontrolled hypertension (BP 180/110)",
+                                "Pregnancy"
+                            ],
+                            "correctAnswer": 1,
+                            "explanation": "Recent ischemic stroke within 3 months is an absolute contraindication to thrombolysis due to high risk of hemorrhagic transformation. Age >75, uncontrolled HTN, and pregnancy are relative contraindications."
+                        }
+                    ]
+                },
+                {
+                    "id": "card-002",
+                    "title": "Heart Failure",
+                    "keyPoints": [
+                        "Definition: Inability of heart to pump sufficient blood to meet metabolic demands",
+                        "Classification: HFrEF (EF <40%, systolic dysfunction) vs HFpEF (EF >50%, diastolic dysfunction)",
+                        "NYHA functional classification: I (no symptoms), II (symptoms with moderate activity), III (symptoms with minimal activity), IV (symptoms at rest)",
+                        "Common causes: IHD, HTN, valvular disease, cardiomyopathy, arrhythmias",
+                        "Clinical features: Dyspnea, orthopnea, PND, pedal edema, fatigue, S3 gallop, elevated JVP",
+                        "Diagnosis: Clinical assessment + BNP/NT-proBNP (>400 pg/mL) + Echocardiography (EF assessment)",
+                        "Acute management: Oxygen, IV diuretics (furosemide), vasodilators (nitrates), treat underlying cause",
+                        "Chronic HFrEF management: ACE-I/ARB + Beta-blocker + MRA (spironolactone) + SGLT2i + Diuretics",
+                        "Device therapy: CRT (for LBBB + EF <35%), ICD (for EF <35% with high SCD risk)",
+                        "Advanced therapy: LVAD (bridge to transplant), Heart transplantation (end-stage HF)"
+                    ],
+                    "mnemonics": {
+                        "FACES": "Common causes - Failure (pump), Arrhythmia, Coronary disease, Endocrine, Septal defects",
+                        "ABCD": "HF management - ACE-I/ARB, Beta-blocker, aldosterone antagonist (MRA), Diuretics",
+                        "CHAMP": "Decompensation triggers - Cardiac (MI, arrhythmia), Hypertension, Anemia, Medication non-compliance, Pulmonary embolism"
+                    },
+                    "clinicalPearls": [
+                        "BNP <100 pg/mL essentially rules out HF (high negative predictive value)",
+                        "Start beta-blockers only after stabilization, not in acute decompensation",
+                        "Spironolactone improves mortality in NYHA III-IV HFrEF",
+                        "HFpEF management focuses on treating comorbidities (HTN, AF, DM)",
+                        "Avoid NSAIDs and CCBs (except amlodipine) in HF patients"
+                    ],
+                    "practiceQuestions": [
+                        {
+                            "question": "A 65-year-old with known HFrEF (EF 30%) presents with acute dyspnea, bilateral crackles, and BP 160/100. What is the most appropriate initial treatment?",
+                            "options": [
+                                "Start beta-blocker",
+                                "IV furosemide and nitrates",
+                                "Increase oral diuretics",
+                                "Emergency dialysis"
+                            ],
+                            "correctAnswer": 1,
+                            "explanation": "Acute decompensated HF with pulmonary edema requires IV loop diuretics (furosemide) for rapid diuresis and IV nitrates for preload reduction and BP control. Beta-blockers should not be started during acute decompensation."
+                        },
+                        {
+                            "question": "Which medication has been shown to reduce mortality in HFrEF?",
+                            "options": [
+                                "Digoxin",
+                                "Furosemide",
+                                "Spironolactone",
+                                "Amlodipine"
+                            ],
+                            "correctAnswer": 2,
+                            "explanation": "Spironolactone (MRA) has proven mortality benefit in HFrEF, especially in NYHA III-IV. Digoxin improves symptoms but not mortality. Furosemide is for symptom control. Amlodipine is safe but doesn't reduce mortality."
+                        }
+                    ]
+                },
+                {
+                    "id": "card-003",
+                    "title": "Hypertension",
+                    "keyPoints": [
+                        "Definition: BP ≥140/90 mmHg on 2 separate occasions (ACC/AHA: ≥130/80)",
+                        "Classification: Stage 1 (140-159/90-99), Stage 2 (≥160/100), Hypertensive emergency (≥180/120 with organ damage)",
+                        "Primary HTN (95%): Essential, multifactorial etiology",
+                        "Secondary HTN (5%): Renal disease, renovascular, endocrine (Conn's, Cushing's, pheochromocytoma), drugs, coarctation",
+                        "Target organ damage: LVH, retinopathy, nephropathy, stroke, CAD",
+                        "Lifestyle modifications: DASH diet, salt restriction (<2g/day), weight loss, exercise, limit alcohol",
+                        "First-line drugs: ACE-I/ARB, CCB, Thiazide diuretics",
+                        "Compelling indications: DM/CKD (ACE-I/ARB), Post-MI (Beta-blocker + ACE-I), HF (ACE-I + BB + MRA)",
+                        "Hypertensive emergency: Reduce BP by 25% in first hour, then to 160/100 in 2-6 hours using IV agents",
+                        "Resistant HTN: Add spironolactone, screen for secondary causes"
+                    ],
+                    "mnemonics": {
+                        "ABCD": "Antihypertensive classes - ACE-I/ARB, Beta-blocker, CCB, Diuretic",
+                        "CHARMS": "Secondary HTN causes - Coarctation, Hyperaldosteronism, Renal artery stenosis, Medications, Sleep apnea"
+                    ],
+                    "clinicalPearls": [
+                        "White coat HTN: Elevated in clinic, normal at home (confirm with ABPM)",
+                        "Masked HTN: Normal in clinic, elevated at home (higher CV risk)",
+                        "ACE-I preferred in DM/CKD for renoprotection",
+                        "Avoid beta-blockers as first-line in uncomplicated HTN",
+                        "Check for postural hypotension in elderly before intensifying treatment"
+                    ],
+                    "practiceQuestions": [
+                        {
+                            "question": "A 45-year-old diabetic with HTN and proteinuria. Which antihypertensive is most appropriate?",
+                            "options": [
+                                "Amlodipine",
+                                "Atenolol",
+                                "Lisinopril",
+                                "Hydrochlorothiazide"
+                            ],
+                            "correctAnswer": 2,
+                            "explanation": "ACE inhibitors (lisinopril) are first-line in diabetic nephropathy due to renoprotective effects beyond BP control. They reduce proteinuria and slow CKD progression."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Respiratory Medicine",
+            "topics": [
+                {
+                    "id": "resp-001",
+                    "title": "Asthma",
+                    "keyPoints": [
+                        "Chronic inflammatory airway disease with reversible airflow obstruction and bronchial hyperresponsiveness",
+                        "Triggers: Allergens (dust, pollen), exercise, cold air, infections, NSAIDs, beta-blockers, stress",
+                        "Pathophysiology: Type 1 hypersensitivity → mast cell degranulation → bronchospasm, inflammation, mucus production",
+                        "Clinical features: Episodic wheeze, dyspnea, chest tightness, cough (worse at night/early morning)",
+                        "Diagnosis: Spirometry showing FEV1/FVC <70% with reversibility >12% (or >200mL) post-bronchodilator",
+                        "Peak flow variability >20% supports diagnosis",
+                        "Step-wise management: Step 1 (SABA PRN) → Step 2 (+ low-dose ICS) → Step 3 (+ LABA) → Step 4 (medium-dose ICS/LABA) → Step 5 (high-dose + add-ons)",
+                        "Acute exacerbation: Oxygen, nebulized SABA + ipratropium, systemic steroids, IV magnesium if severe",
+                        "Severe asthma: Silent chest, inability to speak, RR >30, HR >120, PEFR <33% predicted",
+                        "Good control: Minimal symptoms, normal activity, PEFR >80% predicted, rare exacerbations"
+                    ],
+                    "mnemonics": {
+                        "ASTHMA": "Triggers - Allergens, Smoke, Temperature, Hormones, Meds (NSAIDs), Activity",
+                        "SABA": "Acute management - Salbutamol, Assess severity, Beta-agonist nebulized, Admit if severe"
+                    },
+                    "clinicalPearls": [
+                        "Silent chest in acute asthma indicates life-threatening severity",
+                        "ICS are cornerstone of chronic management, reduce exacerbations",
+                        "Never use LABA as monotherapy (increases mortality)",
+                        "Aspirin-exacerbated respiratory disease (AERD): Asthma + nasal polyps + aspirin sensitivity",
+                        "Check inhaler technique at every visit"
+                    ],
+                    "practiceQuestions": [
+                        {
+                            "question": "A 25-year-old with known asthma presents with severe dyspnea, unable to complete sentences, RR 32, HR 125, silent chest on auscultation. What is the most appropriate immediate management?",
+                            "options": [
+                                "Oral prednisolone and discharge",
+                                "Nebulized salbutamol and reassess",
+                                "Oxygen, nebulized bronchodilators, IV steroids, consider ICU",
+                                "Inhaled corticosteroids"
+                            ],
+                            "correctAnswer": 2,
+                            "explanation": "This is life-threatening asthma (silent chest, inability to speak, tachypnea, tachycardia). Requires aggressive management with high-flow oxygen, continuous nebulized bronchodilators, IV steroids, and ICU consideration for possible intubation."
+                        }
+                    ]
+                },
+                {
+                    "id": "resp-002",
+                    "title": "COPD",
+                    "keyPoints": [
+                        "Progressive airflow limitation due to chronic bronchitis and/or emphysema",
+                        "Main risk factor: Smoking (>20 pack-years), also biomass fuel, alpha-1 antitrypsin deficiency",
+                        "Chronic bronchitis: Productive cough for ≥3 months in 2 consecutive years",
+                        "Emphysema: Destruction of alveolar walls → air trapping, hyperinflation",
+                        "Clinical features: Progressive dyspnea, chronic cough, sputum production, wheeze, barrel chest",
+                        "Diagnosis: Post-bronchodilator FEV1/FVC <0.7 on spirometry",
+                        "GOLD classification: Mild (FEV1 ≥80%), Moderate (50-79%), Severe (30-49%), Very severe (<30%)",
+                        "Stable COPD: SABA/SAMA PRN → LABA/LAMA → LABA+LAMA → add ICS if frequent exacerbations",
+                        "Acute exacerbation: Increased dyspnea, sputum volume/purulence → Oxygen (target 88-92%), nebulized bronchodilators, steroids, antibiotics if purulent",
+                        "Long-term oxygen therapy (LTOT): If PaO2 <55 mmHg or <60 with cor pulmonale, improves survival"
+                    ],
+                    "mnemonics": {
+                        "COPD": "Features - Cough, Obstruction, Pink puffer/Blue bloater, Dyspnea",
+                        "GOLD": "Severity grading - Grade 1-4 based on FEV1"
+                    },
+                    "clinicalPearls": [
+                        "Avoid high-flow oxygen in COPD (risk of CO2 retention), target SpO2 88-92%",
+                        "ICS increases pneumonia risk in COPD, use only if frequent exacerbations",
+                        "Alpha-1 antitrypsin deficiency: Early-onset emphysema, lower lobe predominant",
+                        "Smoking cessation is the only intervention that slows FEV1 decline",
+                        "NIV indicated if pH <7.35 despite optimal medical therapy"
+                    ],
+                    "practiceQuestions": [
+                        {
+                            "question": "A 65-year-old smoker with COPD presents with increased dyspnea and purulent sputum. ABG shows pH 7.32, PaCO2 65, PaO2 55 on 4L O2. What is the next step?",
+                            "options": [
+                                "Increase oxygen to 10L",
+                                "Start NIV with BiPAP",
+                                "Immediate intubation",
+                                "Reduce oxygen to 2L"
+                            ],
+                            "correctAnswer": 1,
+                            "explanation": "Acute COPD exacerbation with respiratory acidosis (pH <7.35) despite medical therapy is an indication for NIV (BiPAP). This can prevent intubation and improve outcomes. Increasing oxygen can worsen hypercapnia."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Gastroenterology",
+            "topics": [
+                {
+                    "id": "gi-001",
+                    "title": "Peptic Ulcer Disease",
+                    "keyPoints": [
+                        "Mucosal break in stomach (gastric ulcer) or duodenum (duodenal ulcer)",
+                        "Main causes: H. pylori infection (70-90%), NSAIDs, stress (ICU patients)",
+                        "Duodenal ulcer: Pain 2-3 hours after meals, relieved by food, more common",
+                        "Gastric ulcer: Pain worsened by food, associated with weight loss",
+                        "Diagnosis: Upper GI endoscopy with biopsy (rule out malignancy in GU), H. pylori testing (urea breath test, stool antigen, biopsy)",
+                        "H. pylori eradication: Triple therapy (PPI + Clarithromycin + Amoxicillin) for 14 days OR Quadruple therapy (PPI + Bismuth + Tetracycline + Metronidazole)",
+                        "NSAID-induced: Stop NSAID, PPI therapy, switch to COX-2 selective if needed",
+                        "Complications: Bleeding (most common), perforation, gastric outlet obstruction, malignant transformation (GU only)",
+                        "Zollinger-Ellison syndrome: Gastrinoma → multiple refractory ulcers, diarrhea, high gastrin levels",
+                        "Confirm eradication: Urea breath test or stool antigen 4-6 weeks after treatment"
+                    ],
+                    "mnemonics": {
+                        "GASTRIC": "Ulcer causes - Gastrinoma, Aspirin/NSAIDs, Smoking, Trauma, Reflux, Infection (H. pylori), Corticosteroids",
+                        "PACED": "PUD complications - Perforation, Anemia, Cancer (GU), Erosion/bleeding, Duodenal obstruction"
+                    },
+                    "clinicalPearls": [
+                        "All gastric ulcers need biopsy to rule out malignancy, DU rarely malignant",
+                        "Posterior DU can erode into gastroduodenal artery → massive bleeding",
+                        "Anterior DU perforation → pneumoperitoneum (air under diaphragm on CXR)",
+                        "Triple therapy failure rate increasing due to clarithromycin resistance",
+                        "PPI should be taken 30 minutes before meals for optimal effect"
+                    ],
+                    "practiceQuestions": [
+                        {
+                            "question": "A 50-year-old presents with epigastric pain relieved by food. Endoscopy shows duodenal ulcer. H. pylori test positive. What is the most appropriate treatment?",
+                            "options": [
+                                "PPI alone for 8 weeks",
+                                "PPI + Clarithromycin + Amoxicillin for 14 days",
+                                "H2 blocker for 4 weeks",
+                                "Surgery"
+                            ],
+                            "correctAnswer": 1,
+                            "explanation": "H. pylori-positive duodenal ulcer requires eradication therapy with triple therapy: PPI + Clarithromycin + Amoxicillin for 14 days. This heals the ulcer and prevents recurrence."
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "quickRevision": {
+        "highYieldTopics": [
+            "Acute Coronary Syndrome management and ECG interpretation",
+            "Heart Failure classification (HFrEF vs HFpEF) and treatment",
+            "Asthma vs COPD differentiation and management",
+            "Hypertension target organ damage and drug selection",
+            "Peptic ulcer disease H. pylori eradication",
+            "Acute exacerbation management (Asthma, COPD, HF)",
+            "ECG patterns in MI (STEMI locations)",
+            "Spirometry interpretation",
+            "Antihypertensive drug compelling indications",
+            "PUD complications and management"
+        ],
+        "importantDrugs": [
+            {
+                "name": "Aspirin",
+                "class": "Antiplatelet",
+                "indication": "ACS, stroke prevention, post-MI",
+                "dose": "75-325 mg/day",
+                "sideEffects": "GI bleeding, Reye's syndrome (children)",
+                "contraindication": "Active bleeding, severe liver disease"
+            },
+            {
+                "name": "Atorvastatin",
+                "class": "Statin",
+                "indication": "Dyslipidemia, post-ACS, DM",
+                "dose": "10-80 mg/day",
+                "sideEffects": "Myalgia, elevated LFTs, rhabdomyolysis (rare)",
+                "monitoring": "LFTs, CK if symptomatic"
+            },
+            {
+                "name": "Lisinopril",
+                "class": "ACE Inhibitor",
+                "indication": "HTN, HF, post-MI, diabetic nephropathy",
+                "dose": "5-40 mg/day",
+                "sideEffects": "Dry cough, hyperkalemia, angioedema",
+                "contraindication": "Pregnancy, bilateral RAS, angioedema history"
+            },
+            {
+                "name": "Metoprolol",
+                "class": "Beta-blocker",
+                "indication": "HTN, HF, post-MI, angina",
+                "dose": "25-200 mg/day",
+                "sideEffects": "Bradycardia, fatigue, bronchospasm",
+                "contraindication": "Asthma, severe bradycardia, decompensated HF"
+            },
+            {
+                "name": "Furosemide",
+                "class": "Loop diuretic",
+                "indication": "Acute pulmonary edema, HF, fluid overload",
+                "dose": "20-80 mg IV/PO",
+                "sideEffects": "Hypokalemia, ototoxicity, hypovolemia",
+                "monitoring": "Electrolytes, renal function"
+            },
+            {
+                "name": "Salbutamol",
+                "class": "Short-acting beta-2 agonist",
+                "indication": "Acute asthma/COPD, bronchospasm",
+                "dose": "2.5-5 mg nebulized or 2 puffs MDI",
+                "sideEffects": "Tremor, tachycardia, hypokalemia",
+                "note": "Rescue medication, not for chronic use alone"
+            },
+            {
+                "name": "Omeprazole",
+                "class": "Proton pump inhibitor",
+                "indication": "PUD, GERD, H. pylori eradication",
+                "dose": "20-40 mg/day",
+                "sideEffects": "Headache, diarrhea, increased fracture risk (long-term)",
+                "note": "Take 30 min before meals"
+            }
+        ],
+        "differentialDiagnosis": [
+            {
+                "presentation": "Chest Pain",
+                "differentials": [
+                    "ACS (MI, unstable angina)",
+                    "Aortic dissection",
+                    "Pulmonary embolism",
+                    "Pneumothorax",
+                    "GERD",
+                    "Costochondritis",
+                    "Pericarditis"
+                ],
+                "redFlags": "Radiation to arm/jaw, diaphoresis, ST changes, elevated troponin"
+            },
+            {
+                "presentation": "Acute Dyspnea",
+                "differentials": [
+                    "Acute pulmonary edema (HF)",
+                    "Asthma exacerbation",
+                    "COPD exacerbation",
+                    "Pneumonia",
+                    "Pulmonary embolism",
+                    "Pneumothorax",
+                    "Anaphylaxis"
+                ],
+                "redFlags": "Hypoxia, tachypnea, altered mental status, hemodynamic instability"
+            }
+        ]
+    }
+}

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Management System - MBBS Exam Prep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="cms-styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#logo-gradient)" />
+                        <path d="M20 10L28 15V25L20 30L12 25V15L20 10Z" stroke="white" stroke-width="2" />
+                        <path d="M20 20L28 15M20 20L12 15M20 20V30" stroke="white" stroke-width="2" />
+                        <defs>
+                            <linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#667eea" />
+                                <stop offset="100%" stop-color="#764ba2" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>MedPrep CMS</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" onclick="showView('dashboard')">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showView('content')">
+                    <span class="icon">📚</span>
+                    <span>Content Library</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showView('editor')">
+                    <span class="icon">✏️</span>
+                    <span>Content Editor</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showView('questions')">
+                    <span class="icon">❓</span>
+                    <span>Question Bank</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showView('import')">
+                    <span class="icon">📥</span>
+                    <span>Import/Export</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showView('settings')">
+                    <span class="icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="storage-info">
+                    <div class="storage-label">Content Storage</div>
+                    <div class="storage-bar">
+                        <div class="storage-fill" style="width: 45%"></div>
+                    </div>
+                    <div class="storage-text">45% Used (234 MB / 500 MB)</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1 id="viewTitle">Dashboard</h1>
+                    <p id="viewSubtitle">Manage your MBBS exam prep content</p>
+                </div>
+                <div class="header-right">
+                    <button class="icon-button" onclick="showNotifications()">
+                        <span class="notification-badge">3</span>
+                        🔔
+                    </button>
+                    <button class="primary-button" onclick="showView('editor')">
+                        + New Content
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard View -->
+            <div id="dashboardView" class="view active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">📚
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">156</div>
+                            <div class="stat-label">Total Topics</div>
+                            <div class="stat-change positive">+12 this week</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">❓
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">847</div>
+                            <div class="stat-label">Practice Questions</div>
+                            <div class="stat-change positive">+45 this week</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">🎯
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">92%</div>
+                            <div class="stat-label">Content Complete</div>
+                            <div class="stat-change neutral">8% remaining</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">👥
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">1,234</div>
+                            <div class="stat-label">Active Students</div>
+                            <div class="stat-change positive">+89 this month</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">✏️</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Updated Cardiology Chapter</div>
+                                    <div class="activity-time">2 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">➕</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Added 15 new questions to Surgery</div>
+                                    <div class="activity-time">5 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">📥</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Imported Pediatrics content</div>
+                                    <div class="activity-time">1 day ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Subject Progress</h3>
+                        <div class="progress-list">
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span>Medicine</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"
+                                        style="width: 95%; background: linear-gradient(90deg, #667eea, #764ba2);"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span>Surgery</span>
+                                    <span>88%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"
+                                        style="width: 88%; background: linear-gradient(90deg, #f093fb, #f5576c);"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span>Pediatrics</span>
+                                    <span>92%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"
+                                        style="width: 92%; background: linear-gradient(90deg, #4facfe, #00f2fe);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Library View -->
+            <div id="contentView" class="view">
+                <div class="content-toolbar">
+                    <input type="text" class="search-input" placeholder="Search content..." id="contentSearch">
+                    <select class="filter-select" id="subjectFilter">
+                        <option value="">All Subjects</option>
+                        <option value="medicine">Medicine</option>
+                        <option value="surgery">Surgery</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="obgyn">ObGyn</option>
+                        <option value="ent">ENT</option>
+                        <option value="ophthalmology">Ophthalmology</option>
+                    </select>
+                    <button class="secondary-button" onclick="refreshContent()">🔄 Refresh</button>
+                </div>
+
+                <div class="content-grid" id="contentGrid">
+                    <!-- Content items will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Content Editor View -->
+            <div id="editorView" class="view">
+                <div class="editor-container">
+                    <div class="editor-sidebar">
+                        <h3>Content Details</h3>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <select id="editorSubject">
+                                <option value="medicine">Medicine</option>
+                                <option value="surgery">Surgery</option>
+                                <option value="pediatrics">Pediatrics</option>
+                                <option value="obgyn">ObGyn</option>
+                                <option value="ent">ENT</option>
+                                <option value="ophthalmology">Ophthalmology</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Chapter</label>
+                            <input type="text" id="editorChapter" placeholder="e.g., Cardiology">
+                        </div>
+                        <div class="form-group">
+                            <label>Topic</label>
+                            <input type="text" id="editorTopic" placeholder="e.g., Myocardial Infarction">
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select id="editorStatus">
+                                <option value="draft">Draft</option>
+                                <option value="review">Under Review</option>
+                                <option value="published">Published</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="editor-main">
+                        <div class="editor-tabs">
+                            <button class="tab-button active" onclick="switchTab('keypoints')">Key Points</button>
+                            <button class="tab-button" onclick="switchTab('mnemonics')">Mnemonics</button>
+                            <button class="tab-button" onclick="switchTab('questions')">Questions</button>
+                            <button class="tab-button" onclick="switchTab('preview')">Preview</button>
+                        </div>
+
+                        <div class="editor-content">
+                            <div id="keypointsTab" class="tab-content active">
+                                <div class="form-group">
+                                    <label>Key Points (one per line)</label>
+                                    <textarea id="keyPointsEditor" rows="15"
+                                        placeholder="Enter key points..."></textarea>
+                                </div>
+                                <button class="secondary-button" onclick="addKeyPoint()">+ Add Point</button>
+                            </div>
+
+                            <div id="mnemonicsTab" class="tab-content">
+                                <div id="mnemonicsContainer"></div>
+                                <button class="secondary-button" onclick="addMnemonic()">+ Add Mnemonic</button>
+                            </div>
+
+                            <div id="questionsTab" class="tab-content">
+                                <div id="questionsContainer"></div>
+                                <button class="secondary-button" onclick="addQuestion()">+ Add Question</button>
+                            </div>
+
+                            <div id="previewTab" class="tab-content">
+                                <div id="contentPreview" class="preview-area"></div>
+                            </div>
+                        </div>
+
+                        <div class="editor-actions">
+                            <button class="secondary-button" onclick="saveDraft()">💾 Save Draft</button>
+                            <button class="primary-button" onclick="publishContent()">🚀 Publish</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questions View -->
+            <div id="questionsView" class="view">
+                <div class="questions-container">
+                    <h2>Question Bank Management</h2>
+                    <p>Manage and organize practice questions across all subjects</p>
+                    <!-- Questions management interface -->
+                </div>
+            </div>
+
+            <!-- Import/Export View -->
+            <div id="importView" class="view">
+                <div class="import-export-grid">
+                    <div class="import-card">
+                        <h3>📥 Import Content</h3>
+                        <p>Upload JSON files to import content</p>
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-icon">📁</div>
+                            <p>Drag & drop JSON files here</p>
+                            <p class="upload-hint">or click to browse</p>
+                            <input type="file" id="fileInput" accept=".json" multiple hidden>
+                        </div>
+                        <button class="primary-button" onclick="document.getElementById('fileInput').click()">
+                            Choose Files
+                        </button>
+                    </div>
+
+                    <div class="import-card">
+                        <h3>📤 Export Content</h3>
+                        <p>Download content as JSON files</p>
+                        <div class="export-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> Medicine
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> Surgery
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> Pediatrics
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> ObGyn
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> ENT
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> Ophthalmology
+                            </label>
+                        </div>
+                        <button class="primary-button" onclick="exportContent()">
+                            Download All
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div id="settingsView" class="view">
+                <div class="settings-container">
+                    <h2>Settings</h2>
+                    <div class="settings-section">
+                        <h3>General Settings</h3>
+                        <div class="form-group">
+                            <label>Platform Name</label>
+                            <input type="text" value="MedPrep MBBS Exam Prep">
+                        </div>
+                        <div class="form-group">
+                            <label>Default Language</label>
+                            <select>
+                                <option>English</option>
+                                <option>Hindi</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="cms-script.js"></script>
+</body>
+
+</html>

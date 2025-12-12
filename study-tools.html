@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Tools - MBBS Exam Prep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="study-tools.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="url(#logo-gradient)" />
+                    <path d="M20 10L28 15V25L20 30L12 25V15L20 10Z" stroke="white" stroke-width="2" />
+                    <path d="M20 20L28 15M20 20L12 15M20 20V30" stroke="white" stroke-width="2" />
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0%" stop-color="#667eea" />
+                            <stop offset="100%" stop-color="#764ba2" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>Study Tools</span>
+            </div>
+            <nav class="nav-tabs">
+                <button class="tab-btn active" onclick="switchTool('flashcards')">🎴 Flashcards</button>
+                <button class="tab-btn" onclick="switchTool('mocktest')">📝 Mock Test</button>
+                <button class="tab-btn" onclick="switchTool('timer')">⏱️ Study Timer</button>
+                <button class="tab-btn" onclick="switchTool('stats')">📊 Statistics</button>
+            </nav>
+        </header>
+
+        <!-- Flashcards Tool -->
+        <div id="flashcards" class="tool-container active">
+            <div class="tool-header">
+                <h1>Flashcards</h1>
+                <p>Master key concepts with interactive flashcards</p>
+            </div>
+
+            <div class="flashcard-controls">
+                <select id="flashcardSubject" onchange="loadFlashcards()">
+                    <option value="medicine">Medicine</option>
+                    <option value="surgery">Surgery</option>
+                    <option value="pediatrics">Pediatrics</option>
+                    <option value="obgyn">ObGyn</option>
+                    <option value="ent">ENT</option>
+                    <option value="ophthalmology">Ophthalmology</option>
+                </select>
+                <select id="flashcardTopic" onchange="loadFlashcards()">
+                    <option value="all">All Topics</option>
+                </select>
+                <button class="secondary-btn" onclick="shuffleFlashcards()">🔀 Shuffle</button>
+            </div>
+
+            <div class="flashcard-wrapper">
+                <div class="flashcard" id="flashcard" onclick="flipCard()">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <div class="card-label">Question</div>
+                            <div class="card-content" id="flashcardQuestion">
+                                Click to load flashcards
+                            </div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="card-label">Answer</div>
+                            <div class="card-content" id="flashcardAnswer">
+                                Answer will appear here
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard-progress">
+                    <span id="cardCounter">0 / 0</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="flashcardProgress"></div>
+                    </div>
+                </div>
+
+                <div class="flashcard-actions">
+                    <button class="action-btn" onclick="previousCard()">⬅️ Previous</button>
+                    <div class="confidence-buttons">
+                        <button class="conf-btn hard" onclick="markCard('hard')">😰 Hard</button>
+                        <button class="conf-btn medium" onclick="markCard('medium')">🤔 Medium</button>
+                        <button class="conf-btn easy" onclick="markCard('easy')">😊 Easy</button>
+                    </div>
+                    <button class="action-btn" onclick="nextCard()">Next ➡️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mock Test Tool -->
+        <div id="mocktest" class="tool-container">
+            <div class="tool-header">
+                <h1>Mock Test</h1>
+                <p>Practice with timed exams</p>
+            </div>
+
+            <div id="testSetup" class="test-setup">
+                <div class="setup-card">
+                    <h3>Configure Your Test</h3>
+
+                    <div class="form-group">
+                        <label>Select Subjects</label>
+                        <div class="checkbox-grid">
+                            <label><input type="checkbox" value="medicine" checked> Medicine</label>
+                            <label><input type="checkbox" value="surgery"> Surgery</label>
+                            <label><input type="checkbox" value="pediatrics"> Pediatrics</label>
+                            <label><input type="checkbox" value="obgyn"> ObGyn</label>
+                            <label><input type="checkbox" value="ent"> ENT</label>
+                            <label><input type="checkbox" value="ophthalmology"> Ophthalmology</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Number of Questions</label>
+                        <input type="number" id="numQuestions" value="20" min="5" max="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Time Limit (minutes)</label>
+                        <input type="number" id="timeLimit" value="30" min="5" max="180">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Difficulty</label>
+                        <select id="difficulty">
+                            <option value="mixed">Mixed</option>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+
+                    <button class="primary-btn" onclick="startMockTest()">🚀 Start Test</button>
+                </div>
+            </div>
+
+            <div id="testInterface" class="test-interface" style="display: none;">
+                <div class="test-header">
+                    <div class="test-timer" id="testTimer">30:00</div>
+                    <div class="test-progress">
+                        Question <span id="currentQuestion">1</span> of <span id="totalQuestions">20</span>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text" id="questionText"></div>
+                    <div class="options-container" id="optionsContainer"></div>
+                </div>
+
+                <div class="test-navigation">
+                    <button class="secondary-btn" onclick="previousQuestion()">⬅️ Previous</button>
+                    <button class="secondary-btn" onclick="flagQuestion()">🚩 Flag</button>
+                    <button class="primary-btn" onclick="nextQuestion()">Next ➡️</button>
+                    <button class="primary-btn" onclick="submitTest()">✅ Submit Test</button>
+                </div>
+
+                <div class="question-palette">
+                    <div class="palette-header">Question Palette</div>
+                    <div class="palette-grid" id="questionPalette"></div>
+                </div>
+            </div>
+
+            <div id="testResults" class="test-results" style="display: none;">
+                <div class="results-card">
+                    <h2>Test Results</h2>
+                    <div class="score-display">
+                        <div class="score-circle">
+                            <svg width="200" height="200">
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="#1e2442" stroke-width="20" />
+                                <circle id="scoreCircle" cx="100" cy="100" r="90" fill="none"
+                                    stroke="url(#scoreGradient)" stroke-width="20" stroke-dasharray="565.48"
+                                    stroke-dashoffset="565.48" transform="rotate(-90 100 100)" />
+                                <defs>
+                                    <linearGradient id="scoreGradient">
+                                        <stop offset="0%" stop-color="#667eea" />
+                                        <stop offset="100%" stop-color="#764ba2" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="score-text">
+                                <div class="score-value" id="scoreValue">0%</div>
+                                <div class="score-label">Score</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="correctAnswers">0</div>
+                            <div class="stat-label">Correct</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="incorrectAnswers">0</div>
+                            <div class="stat-label">Incorrect</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="unanswered">0</div>
+                            <div class="stat-label">Unanswered</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="timeTaken">0:00</div>
+                            <div class="stat-label">Time Taken</div>
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button class="secondary-btn" onclick="reviewAnswers()">📖 Review Answers</button>
+                        <button class="primary-btn" onclick="retakeTest()">🔄 Retake Test</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Study Timer Tool -->
+        <div id="timer" class="tool-container">
+            <div class="tool-header">
+                <h1>Pomodoro Study Timer</h1>
+                <p>Boost productivity with focused study sessions</p>
+            </div>
+
+            <div class="timer-wrapper">
+                <div class="timer-display">
+                    <div class="timer-circle">
+                        <svg width="300" height="300">
+                            <circle cx="150" cy="150" r="140" fill="none" stroke="#1e2442" stroke-width="10" />
+                            <circle id="timerCircle" cx="150" cy="150" r="140" fill="none" stroke="url(#timerGradient)"
+                                stroke-width="10" stroke-dasharray="879.64" stroke-dashoffset="0"
+                                transform="rotate(-90 150 150)" />
+                            <defs>
+                                <linearGradient id="timerGradient">
+                                    <stop offset="0%" stop-color="#667eea" />
+                                    <stop offset="100%" stop-color="#764ba2" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="timer-text">
+                            <div class="timer-value" id="timerValue">25:00</div>
+                            <div class="timer-label" id="timerLabel">Focus Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timer-controls">
+                    <button class="timer-btn" id="startBtn" onclick="startTimer()">▶️ Start</button>
+                    <button class="timer-btn" id="pauseBtn" onclick="pauseTimer()" style="display: none;">⏸️
+                        Pause</button>
+                    <button class="timer-btn" onclick="resetTimer()">🔄 Reset</button>
+                </div>
+
+                <div class="timer-settings">
+                    <div class="setting-item">
+                        <label>Focus Duration</label>
+                        <input type="number" id="focusDuration" value="25" min="1" max="60"> minutes
+                    </div>
+                    <div class="setting-item">
+                        <label>Break Duration</label>
+                        <input type="number" id="breakDuration" value="5" min="1" max="30"> minutes
+                    </div>
+                    <div class="setting-item">
+                        <label>Long Break</label>
+                        <input type="number" id="longBreakDuration" value="15" min="5" max="60"> minutes
+                    </div>
+                </div>
+
+                <div class="pomodoro-stats">
+                    <h3>Today's Progress</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🍅</div>
+                            <div class="stat-value" id="pomodorosCompleted">0</div>
+                            <div class="stat-label">Pomodoros</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⏱️</div>
+                            <div class="stat-value" id="totalStudyTime">0h 0m</div>
+                            <div class="stat-label">Study Time</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">☕</div>
+                            <div class="stat-value" id="breaksaken">0</div>
+                            <div class="stat-label">Breaks</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Tool -->
+        <div id="stats" class="tool-container">
+            <div class="tool-header">
+                <h1>Study Statistics</h1>
+                <p>Track your progress and performance</p>
+            </div>
+
+            <div class="stats-dashboard">
+                <div class="stats-overview">
+                    <div class="overview-card">
+                        <div class="overview-icon">📚</div>
+                        <div class="overview-content">
+                            <div class="overview-value">156</div>
+                            <div class="overview-label">Topics Studied</div>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">✅</div>
+                        <div class="overview-content">
+                            <div class="overview-value">847</div>
+                            <div class="overview-label">Questions Attempted</div>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">🎯</div>
+                        <div class="overview-content">
+                            <div class="overview-value">78%</div>
+                            <div class="overview-label">Average Score</div>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">⏱️</div>
+                        <div class="overview-content">
+                            <div class="overview-value">45h</div>
+                            <div class="overview-label">Total Study Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-charts">
+                    <div class="chart-card">
+                        <h3>Subject-wise Performance</h3>
+                        <div class="performance-list">
+                            <div class="performance-item">
+                                <span>Medicine</span>
+                                <div class="performance-bar">
+                                    <div class="performance-fill"
+                                        style="width: 85%; background: linear-gradient(90deg, #667eea, #764ba2);"></div>
+                                </div>
+                                <span>85%</span>
+                            </div>
+                            <div class="performance-item">
+                                <span>Surgery</span>
+                                <div class="performance-bar">
+                                    <div class="performance-fill"
+                                        style="width: 72%; background: linear-gradient(90deg, #f093fb, #f5576c);"></div>
+                                </div>
+                                <span>72%</span>
+                            </div>
+                            <div class="performance-item">
+                                <span>Pediatrics</span>
+                                <div class="performance-bar">
+                                    <div class="performance-fill"
+                                        style="width: 90%; background: linear-gradient(90deg, #4facfe, #00f2fe);"></div>
+                                </div>
+                                <span>90%</span>
+                            </div>
+                            <div class="performance-item">
+                                <span>ObGyn</span>
+                                <div class="performance-bar">
+                                    <div class="performance-fill"
+                                        style="width: 68%; background: linear-gradient(90deg, #fa709a, #fee140);"></div>
+                                </div>
+                                <span>68%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3>Weekly Activity</h3>
+                        <div class="activity-chart">
+                            <div class="activity-bar" style="height: 60%"><span>Mon</span></div>
+                            <div class="activity-bar" style="height: 80%"><span>Tue</span></div>
+                            <div class="activity-bar" style="height: 45%"><span>Wed</span></div>
+                            <div class="activity-bar" style="height: 90%"><span>Thu</span></div>
+                            <div class="activity-bar" style="height: 70%"><span>Fri</span></div>
+                            <div class="activity-bar" style="height: 30%"><span>Sat</span></div>
+                            <div class="activity-bar" style="height: 50%"><span>Sun</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="study-tools.js"></script>
+</body>
+
+</html>

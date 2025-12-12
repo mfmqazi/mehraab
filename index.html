@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBBS Final Year Exam Prep | Master Your Medical Exams</title>
+    <meta name="description"
+        content="Comprehensive exam preparation platform for final year MBBS students. Study Medicine, Surgery, Pediatrics, ObGyn, ENT, and Ophthalmology with expert-recommended textbooks.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-background"></div>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="url(#logo-gradient)" />
+                        <path d="M20 10L28 15V25L20 30L12 25V15L20 10Z" stroke="white" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M20 20L28 15M20 20L12 15M20 20V30" stroke="white" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <defs>
+                            <linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#667eea" />
+                                <stop offset="100%" stop-color="#764ba2" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>MedPrep</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#subjects">Subjects</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#study-plan">Study Plan</a></li>
+                    <li><a href="#progress">Progress</a></li>
+                </ul>
+                <button class="cta-button">Get Started</button>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-icon">🎓</span>
+                <span>Final Year MBBS Exam Preparation</span>
+            </div>
+            <h1 class="hero-title">
+                Master Your Medical Exams with
+                <span class="gradient-text">Expert Guidance</span>
+            </h1>
+            <p class="hero-subtitle">
+                Comprehensive study materials from the most trusted textbooks.
+                Prepare for Medicine, Surgery, Pediatrics, ObGyn, ENT, and Ophthalmology.
+            </p>
+            <div class="hero-actions">
+                <button class="primary-button" onclick="scrollToSubjects()">
+                    <span>Start Studying</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button class="secondary-button" onclick="showStudyPlan()">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path
+                            d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z"
+                            stroke="currentColor" stroke-width="2" />
+                        <path d="M10 6V10L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <span>Create Study Plan</span>
+                </button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Core Subjects</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Study Topics</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Access</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Subjects Section -->
+    <section id="subjects" class="subjects-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Core Subjects</h2>
+                <p class="section-subtitle">Master all six essential subjects with expert-recommended textbooks</p>
+            </div>
+
+            <div class="subjects-grid">
+                <!-- Medicine -->
+                <div class="subject-card" data-subject="medicine">
+                    <div class="subject-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path
+                                d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z"
+                                stroke="white" stroke-width="2" />
+                            <path d="M16 10V22M10 16H22" stroke="white" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="subject-content">
+                        <h3 class="subject-title">Medicine</h3>
+                        <p class="subject-author">Reference: Archith Boloor</p>
+                        <p class="subject-description">Comprehensive internal medicine covering all major systems and
+                            clinical scenarios.</p>
+                        <div class="subject-topics">
+                            <span class="topic-tag">Cardiology</span>
+                            <span class="topic-tag">Respiratory</span>
+                            <span class="topic-tag">GIT</span>
+                            <span class="topic-tag">+12 more</span>
+                        </div>
+                    </div>
+                    <button class="subject-button" onclick="openSubject('medicine')">
+                        <span>Start Learning</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Surgery -->
+                <div class="subject-card" data-subject="surgery">
+                    <div class="subject-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M8 24L24 8M24 8H14M24 8V18" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M8 24L4 28" stroke="white" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="subject-content">
+                        <h3 class="subject-title">Surgery</h3>
+                        <p class="subject-author">Reference: SRB</p>
+                        <p class="subject-description">Essential surgical principles, techniques, and clinical
+                            management strategies.</p>
+                        <div class="subject-topics">
+                            <span class="topic-tag">General Surgery</span>
+                            <span class="topic-tag">Trauma</span>
+                            <span class="topic-tag">Oncology</span>
+                            <span class="topic-tag">+10 more</span>
+                        </div>
+                    </div>
+                    <button class="subject-button" onclick="openSubject('surgery')">
+                        <span>Start Learning</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Pediatrics -->
+                <div class="subject-card" data-subject="pediatrics">
+                    <div class="subject-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="10" r="4" stroke="white" stroke-width="2" />
+                            <path d="M24 28C24 23.5817 20.4183 20 16 20C11.5817 20 8 23.5817 8 28" stroke="white"
+                                stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="subject-content">
+                        <h3 class="subject-title">Pediatrics</h3>
+                        <p class="subject-author">Reference: OP Ghai</p>
+                        <p class="subject-description">Child health, development, and pediatric disease management from
+                            birth to adolescence.</p>
+                        <div class="subject-topics">
+                            <span class="topic-tag">Neonatology</span>
+                            <span class="topic-tag">Growth</span>
+                            <span class="topic-tag">Immunization</span>
+                            <span class="topic-tag">+15 more</span>
+                        </div>
+                    </div>
+                    <button class="subject-button" onclick="openSubject('pediatrics')">
+                        <span>Start Learning</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- ObGyn -->
+                <div class="subject-card" data-subject="obgyn">
+                    <div class="subject-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path
+                                d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z"
+                                stroke="white" stroke-width="2" />
+                            <path
+                                d="M12 16C12 13.7909 13.7909 12 16 12C18.2091 12 20 13.7909 20 16C20 18.2091 18.2091 20 16 20"
+                                stroke="white" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="subject-content">
+                        <h3 class="subject-title">Obstetrics & Gynecology</h3>
+                        <p class="subject-author">Reference: DC Datta</p>
+                        <p class="subject-description">Women's health, pregnancy management, and gynecological
+                            disorders.</p>
+                        <div class="subject-topics">
+                            <span class="topic-tag">Antenatal Care</span>
+                            <span class="topic-tag">Labor</span>
+                            <span class="topic-tag">Gynec Disorders</span>
+                            <span class="topic-tag">+14 more</span>
+                        </div>
+                    </div>
+                    <button class="subject-button" onclick="openSubject('obgyn')">
+                        <span>Start Learning</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- ENT -->
+                <div class="subject-card" data-subject="ent">
+                    <div class="subject-icon" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path
+                                d="M20 16C20 18.2091 18.2091 20 16 20C13.7909 20 12 18.2091 12 16C12 13.7909 13.7909 12 16 12C18.2091 12 20 13.7909 20 16Z"
+                                stroke="white" stroke-width="2" />
+                            <path d="M16 4V8M16 24V28M28 16H24M8 16H4" stroke="white" stroke-width="2"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="subject-content">
+                        <h3 class="subject-title">ENT</h3>
+                        <p class="subject-author">Reference: PL Dhingra</p>
+                        <p class="subject-description">Ear, nose, and throat disorders with clinical examination
+                            techniques.</p>
+                        <div class="subject-topics">
+                            <span class="topic-tag">Otology</span>
+                            <span class="topic-tag">Rhinology</span>
+                            <span class="topic-tag">Laryngology</span>
+                            <span class="topic-tag">+8 more</span>
+                        </div>
+                    </div>
+                    <button class="subject-button" onclick="openSubject('ent')">
+                        <span>Start Learning</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Ophthalmology -->
+                <div class="subject-card" data-subject="ophthalmology">
+                    <div class="subject-icon" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path
+                                d="M16 20C18.2091 20 20 18.2091 20 16C20 13.7909 18.2091 12 16 12C13.7909 12 12 13.7909 12 16C12 18.2091 13.7909 20 16 20Z"
+                                stroke="white" stroke-width="2" />
+                            <path d="M4 16C4 16 8 8 16 8C24 8 28 16 28 16C28 16 24 24 16 24C8 24 4 16 4 16Z"
+                                stroke="white" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <div class="subject-content">
+                        <h3 class="subject-title">Ophthalmology</h3>
+                        <p class="subject-author">Reference: AK Khurana</p>
+                        <p class="subject-description">Eye diseases, visual disorders, and ophthalmic examination
+                            methods.</p>
+                        <div class="subject-topics">
+                            <span class="topic-tag">Refraction</span>
+                            <span class="topic-tag">Cataract</span>
+                            <span class="topic-tag">Glaucoma</span>
+                            <span class="topic-tag">+11 more</span>
+                        </div>
+                    </div>
+                    <button class="subject-button" onclick="openSubject('ophthalmology')">
+                        <span>Start Learning</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="resources" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Study Resources</h2>
+                <p class="section-subtitle">Everything you need to excel in your final year exams</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Comprehensive Notes</h3>
+                    <p>Detailed chapter-wise notes from all recommended textbooks, organized for easy revision.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Practice Questions</h3>
+                    <p>Extensive question banks with detailed explanations to test your knowledge.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor your study progress across all subjects with detailed analytics.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Study Schedules</h3>
+                    <p>Customizable study plans tailored to your exam timeline and learning pace.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Quick Revision</h3>
+                    <p>High-yield topics and mnemonics for last-minute exam preparation.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Clinical Cases</h3>
+                    <p>Real-world clinical scenarios to enhance your diagnostic and management skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Study Plan Section -->
+    <section id="study-plan" class="study-plan-section">
+        <div class="container">
+            <div class="study-plan-content">
+                <div class="study-plan-text">
+                    <h2 class="section-title">Create Your Personalized Study Plan</h2>
+                    <p class="section-subtitle">Let us help you organize your preparation with a customized study
+                        schedule based on your exam date and current progress.</p>
+
+                    <div class="plan-features">
+                        <div class="plan-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M20 6L9 17L4 12" stroke="#667eea" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Subject-wise time allocation</span>
+                        </div>
+                        <div class="plan-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M20 6L9 17L4 12" stroke="#667eea" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Daily study goals and milestones</span>
+                        </div>
+                        <div class="plan-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M20 6L9 17L4 12" stroke="#667eea" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Revision cycles and practice tests</span>
+                        </div>
+                        <div class="plan-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M20 6L9 17L4 12" stroke="#667eea" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Flexible adjustments based on progress</span>
+                        </div>
+                    </div>
+
+                    <button class="primary-button" onclick="showStudyPlan()">
+                        <span>Generate Study Plan</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="study-plan-visual">
+                    <div class="calendar-card">
+                        <div class="calendar-header">
+                            <h4>Your Study Calendar</h4>
+                            <span class="calendar-month">December 2025</span>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="calendar-day">Mon</div>
+                            <div class="calendar-day">Tue</div>
+                            <div class="calendar-day">Wed</div>
+                            <div class="calendar-day">Thu</div>
+                            <div class="calendar-day">Fri</div>
+                            <div class="calendar-day">Sat</div>
+                            <div class="calendar-day">Sun</div>
+
+                            <div class="calendar-date"></div>
+                            <div class="calendar-date active" data-subject="medicine">1</div>
+                            <div class="calendar-date active" data-subject="surgery">2</div>
+                            <div class="calendar-date active" data-subject="pediatrics">3</div>
+                            <div class="calendar-date active" data-subject="obgyn">4</div>
+                            <div class="calendar-date active" data-subject="ent">5</div>
+                            <div class="calendar-date active" data-subject="ophthalmology">6</div>
+                            <div class="calendar-date active" data-subject="medicine">7</div>
+                            <div class="calendar-date active" data-subject="surgery">8</div>
+                            <div class="calendar-date active" data-subject="pediatrics">9</div>
+                            <div class="calendar-date active" data-subject="obgyn">10</div>
+                            <div class="calendar-date active" data-subject="ent">11</div>
+                            <div class="calendar-date current">12</div>
+                            <div class="calendar-date">13</div>
+                            <div class="calendar-date">14</div>
+                            <div class="calendar-date">15</div>
+                            <div class="calendar-date">16</div>
+                            <div class="calendar-date">17</div>
+                            <div class="calendar-date">18</div>
+                            <div class="calendar-date">19</div>
+                            <div class="calendar-date">20</div>
+                            <div class="calendar-date">21</div>
+                            <div class="calendar-date">22</div>
+                            <div class="calendar-date">23</div>
+                            <div class="calendar-date">24</div>
+                            <div class="calendar-date">25</div>
+                            <div class="calendar-date">26</div>
+                            <div class="calendar-date">27</div>
+                            <div class="calendar-date">28</div>
+                            <div class="calendar-date">29</div>
+                            <div class="calendar-date">30</div>
+                            <div class="calendar-date">31</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section id="progress" class="progress-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Track Your Progress</h2>
+                <p class="section-subtitle">Monitor your preparation across all subjects</p>
+            </div>
+
+            <div class="progress-grid">
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h4>Medicine</h4>
+                        <span class="progress-percentage">65%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                            style="width: 65%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);"></div>
+                    </div>
+                    <p class="progress-info">13 of 20 chapters completed</p>
+                </div>
+
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h4>Surgery</h4>
+                        <span class="progress-percentage">48%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                            style="width: 48%; background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);"></div>
+                    </div>
+                    <p class="progress-info">10 of 21 chapters completed</p>
+                </div>
+
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h4>Pediatrics</h4>
+                        <span class="progress-percentage">72%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                            style="width: 72%; background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    </div>
+                    <p class="progress-info">18 of 25 chapters completed</p>
+                </div>
+
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h4>ObGyn</h4>
+                        <span class="progress-percentage">55%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                            style="width: 55%; background: linear-gradient(90deg, #fa709a 0%, #fee140 100%);"></div>
+                    </div>
+                    <p class="progress-info">11 of 20 chapters completed</p>
+                </div>
+
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h4>ENT</h4>
+                        <span class="progress-percentage">80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                            style="width: 80%; background: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%);"></div>
+                    </div>
+                    <p class="progress-info">12 of 15 chapters completed</p>
+                </div>
+
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h4>Ophthalmology</h4>
+                        <span class="progress-percentage">60%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                            style="width: 60%; background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 100%);"></div>
+                    </div>
+                    <p class="progress-info">9 of 15 chapters completed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="8" fill="url(#footer-logo-gradient)" />
+                            <path d="M20 10L28 15V25L20 30L12 25V15L20 10Z" stroke="white" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M20 20L28 15M20 20L12 15M20 20V30" stroke="white" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <defs>
+                                <linearGradient id="footer-logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                                    <stop offset="0%" stop-color="#667eea" />
+                                    <stop offset="100%" stop-color="#764ba2" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span>MedPrep</span>
+                    </div>
+                    <p>Your comprehensive platform for MBBS final year exam preparation.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Subjects</h4>
+                        <ul>
+                            <li><a href="#" onclick="openSubject('medicine')">Medicine</a></li>
+                            <li><a href="#" onclick="openSubject('surgery')">Surgery</a></li>
+                            <li><a href="#" onclick="openSubject('pediatrics')">Pediatrics</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>More Subjects</h4>
+                        <ul>
+                            <li><a href="#" onclick="openSubject('obgyn')">ObGyn</a></li>
+                            <li><a href="#" onclick="openSubject('ent')">ENT</a></li>
+                            <li><a href="#" onclick="openSubject('ophthalmology')">Ophthalmology</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#study-plan">Study Plans</a></li>
+                            <li><a href="#progress">Progress Tracking</a></li>
+                            <li><a href="#resources">Study Materials</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 MedPrep. All rights reserved.</p>
+                <p>Designed for MBBS Final Year Students</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Study Plan -->
+    <div id="studyPlanModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Your Study Plan</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="studyPlanForm">
+                    <div class="form-group">
+                        <label for="examDate">Exam Date</label>
+                        <input type="date" id="examDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studyHours">Daily Study Hours</label>
+                        <input type="number" id="studyHours" min="1" max="16" value="6" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Priority Subjects (Select up to 3)</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="priority" value="medicine">
+                                <span>Medicine</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="priority" value="surgery">
+                                <span>Surgery</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="priority" value="pediatrics">
+                                <span>Pediatrics</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="priority" value="obgyn">
+                                <span>ObGyn</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="priority" value="ent">
+                                <span>ENT</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="priority" value="ophthalmology">
+                                <span>Ophthalmology</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="primary-button">
+                        <span>Generate Plan</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
