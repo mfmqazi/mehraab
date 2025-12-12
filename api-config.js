@@ -7,7 +7,7 @@ const API_CONFIG = {
     USE_BACKEND_PROXY: true,
 
     // Your Vercel deployment URL (update after deploying)
-    BACKEND_URL: 'https://mehraab-2kz02l2g4-musaddique-qazis-projects.vercel.app/api/generate',
+    BACKEND_URL: 'https://mehraab-g6hgrw8gz-musaddique-qazis-projects.vercel.app/api/generate',
 
     // Fallback to GitHub Pages URL if Vercel URL not set
     get API_ENDPOINT() {
