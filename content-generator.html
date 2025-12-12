@@ -225,24 +225,6 @@
             margin-top: 0.5rem;
         }
 
-        .api-key-input {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .api-key-input input {
-            flex: 1;
-        }
-
-        .api-key-input button {
-            flex: 0 0 auto;
-            width: 150px;
-        }
 
         .success-message {
             background: rgba(72, 187, 120, 0.1);
@@ -289,11 +271,6 @@
         <h1>🤖 AI Content Generator</h1>
         <p class="subtitle">Generate comprehensive study materials for MBBS exam preparation</p>
 
-        <!-- API Key Input -->
-        <div class="api-key-input">
-            <input type="password" id="apiKey" placeholder="Enter your Gemini API Key (get it from ai.google.dev)">
-            <button onclick="saveApiKey()">Save API Key</button>
-        </div>
 
         <!-- Statistics -->
         <div class="stats">
