@@ -86,33 +86,6 @@ function updateStats(topics = 0, questions = 0, mnemonics = 0, files = 0) {
     loadStats();
 }
 
-// Save API key using secure manager
-function saveAPIKey() {
-    const apiKey = document.getElementById('apiKey').value.trim();
-    if (!apiKey) {
-        showError('Please enter a valid API key');
-        return;
-    }
-
-    if (!window.apiKeyManager.validateAPIKey(apiKey)) {
-        showError('Invalid API key format. Gemini API keys should be at least 20 characters.');
-        return;
-    }
-
-    try {
-        window.apiKeyManager.setAPIKey(apiKey);
-        showSuccess('API key saved securely! ✅');
-        document.getElementById('apiKey').value = '';
-        document.getElementById('apiKey').placeholder = 'API Key saved ✓';
-    } catch (error) {
-        showError('Error saving API key: ' + error.message);
-    }
-}
-
-// Load API key using secure manager
-function getAPIKey() {
-    return window.apiKeyManager.getAPIKey();
-}
 
 // Update chapters dropdown based on subject
 function updateChapters() {
@@ -125,14 +98,8 @@ function updateChapters() {
     ).join('');
 }
 
-// Generate content using Gemini API
+// Generate content using Backend API
 async function generateContent() {
-    const apiKey = getApiKey();
-    if (!apiKey) {
-        showError('Please save your Gemini API key first');
-        return;
-    }
-
     const subject = document.getElementById('subject').value;
     const chapter = document.getElementById('chapter').value;
     const specificTopic = document.getElementById('specificTopic').value;
@@ -149,7 +116,9 @@ async function generateContent() {
 
     try {
         const prompt = createPrompt(subjectInfo, chapterName, topicName, numQuestions, includeMnemonics, includeClinicalPearls);
-        const content = await callGeminiAPI(apiKey, prompt);
+
+        // Use backend API (from api-config.js)
+        const content = await callGeminiAPI(null, prompt);
 
         // Parse and format the response
         const formattedContent = formatContent(content, subjectInfo, chapterName, topicName);
@@ -217,46 +186,6 @@ Guidelines:
 Return ONLY valid JSON, no additional text.`;
 }
 
-// Call Gemini API
-async function callGeminiAPI(apiKey, prompt) {
-    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-
-    const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            contents: [{
-                parts: [{
-                    text: prompt
-                }]
-            }],
-            generationConfig: {
-                temperature: 0.7,
-                topK: 40,
-                topP: 0.95,
-                maxOutputTokens: 8192,
-            }
-        })
-    });
-
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error?.message || 'API request failed');
-    }
-
-    const data = await response.json();
-    const text = data.candidates[0].content.parts[0].text;
-
-    // Extract JSON from response (remove markdown code blocks if present)
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-        throw new Error('No valid JSON found in response');
-    }
-
-    return JSON.parse(jsonMatch[0]);
-}
 
 // Format content
 function formatContent(content, subjectInfo, chapter, topic) {
@@ -272,16 +201,10 @@ function formatContent(content, subjectInfo, chapter, topic) {
 
 // Bulk generate content for entire subject
 async function generateBulk() {
-    const apiKey = getApiKey();
-    if (!apiKey) {
-        showError('Please save your Gemini API key first');
-        return;
-    }
-
     const subject = document.getElementById('subject').value;
     const subjectInfo = subjectConfig[subject];
 
-    if (!confirm(`This will generate content for all ${subjectInfo.chapters.length} chapters in ${subjectInfo.name}. This may take several minutes and use significant API quota. Continue?`)) {
+    if (!confirm(`This will generate content for all ${subjectInfo.chapters.length} chapters in ${subjectInfo.name}. This may take several minutes. Continue?`)) {
         return;
     }
 
@@ -296,7 +219,7 @@ async function generateBulk() {
 
         try {
             const prompt = createPrompt(subjectInfo, chapter, chapter, 5, true, true);
-            const content = await callGeminiAPI(apiKey, prompt);
+            const content = await callGeminiAPI(null, prompt);
             const formatted = formatContent(content, subjectInfo, chapter, chapter);
             results.push(formatted);
             successCount++;
@@ -382,11 +305,5 @@ function showError(message) {
 document.addEventListener('DOMContentLoaded', () => {
     loadStats();
     updateChapters();
-
-    // Check if API key exists
-    if (getApiKey()) {
-        document.getElementById('apiKey').placeholder = 'API Key saved ✓';
-    }
-
-    console.log('🤖 AI Content Generator Ready');
+    console.log('🤖 AI Content Generator Ready - Using Backend API');
 });
