@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Guide - MBBS Exam Prep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .help-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .help-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .help-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .help-header p {
+            font-size: 1.25rem;
+            color: #a0aec0;
+        }
+
+        .help-section {
+            background: #1e2442;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .help-section h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .help-section h3 {
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .help-section p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .help-section ul,
+        .help-section ol {
+            color: #a0aec0;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .help-section li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-card {
+            background: rgba(102, 126, 234, 0.05);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .feature-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .step-box {
+            background: rgba(102, 126, 234, 0.1);
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+        }
+
+        .step-box strong {
+            color: #667eea;
+        }
+
+        .tip-box {
+            background: rgba(72, 187, 120, 0.1);
+            border-left: 4px solid #48bb78;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+        }
+
+        .tip-box strong {
+            color: #48bb78;
+        }
+
+        .warning-box {
+            background: rgba(237, 137, 54, 0.1);
+            border-left: 4px solid #ed8936;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+        }
+
+        .warning-box strong {
+            color: #ed8936;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .quick-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .quick-link:hover {
+            transform: translateY(-4px);
+        }
+
+        .quick-link .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-link .title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .video-placeholder {
+            background: #151933;
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            border: 2px dashed rgba(102, 126, 234, 0.3);
+        }
+
+        .video-placeholder p {
+            color: #667eea;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="help-container">
+        <a href="index.html" class="back-button">← Back to Home</a>
+
+        <div class="help-header">
+            <h1>📚 Help & User Guide</h1>
+            <p>Everything you need to know to master your MBBS exams with our platform</p>
+        </div>
+
+        <!-- Getting Started -->
+        <div class="help-section">
+            <h2>🚀 Getting Started</h2>
+            <p>Welcome to your comprehensive MBBS exam preparation platform! This guide will help you make the most of
+                all available features.</p>
+
+            <h3>What is this platform?</h3>
+            <p>This is an AI-powered study platform designed specifically for MBBS final year students. It helps you:
+            </p>
+            <ul>
+                <li>Generate comprehensive study notes for any topic</li>
+                <li>Practice with AI-generated questions</li>
+                <li>Create and review flashcards</li>
+                <li>Take mock tests with timers</li>
+                <li>Track your study progress</li>
+                <li>Manage your study schedule</li>
+            </ul>
+
+            <div class="tip-box">
+                <strong>💡 Pro Tip:</strong> Start by exploring the AI Content Generator to create study materials for
+                your weakest subjects first!
+            </div>
+        </div>
+
+        <!-- Main Features -->
+        <div class="help-section">
+            <h2>🎯 Main Features</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🤖 AI Content Generator</h4>
+                    <p>Generate comprehensive study notes, mnemonics, clinical pearls, and practice questions instantly
+                        using AI.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📝 Content Management</h4>
+                    <p>Create, edit, and organize your own study materials with our built-in CMS.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📚 Study Tools</h4>
+                    <p>Flashcards, mock tests, and Pomodoro timer to enhance your learning experience.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📊 Progress Tracking</h4>
+                    <p>Monitor your study progress across all subjects with detailed analytics.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Using AI Content Generator -->
+        <div class="help-section">
+            <h2>🤖 Using the AI Content Generator</h2>
+            <p>The AI Content Generator is your most powerful tool for creating study materials.</p>
+
+            <h3>Step-by-Step Guide:</h3>
+
+            <div class="step-box">
+                <strong>Step 1:</strong> Navigate to the AI Generator
+                <p>Click "AI Generator" in the top menu or the "Generate Notes" button.</p>
+            </div>
+
+            <div class="step-box">
+                <strong>Step 2:</strong> Select Your Subject
+                <p>Choose from Medicine, Surgery, Pediatrics, ObGyn, ENT, or Ophthalmology.</p>
+            </div>
+
+            <div class="step-box">
+                <strong>Step 3:</strong> Choose a Chapter
+                <p>Select the chapter you want to study from the dropdown menu.</p>
+            </div>
+
+            <div class="step-box">
+                <strong>Step 4:</strong> Specify a Topic (Optional)
+                <p>Enter a specific topic like "Myocardial Infarction" for focused content.</p>
+            </div>
+
+            <div class="step-box">
+                <strong>Step 5:</strong> Configure Options
+                <p>Set number of practice questions, include mnemonics, and clinical pearls.</p>
+            </div>
+
+            <div class="step-box">
+                <strong>Step 6:</strong> Generate Content
+                <p>Click "🚀 Generate Content" and wait 5-10 seconds for AI to create your notes.</p>
+            </div>
+
+            <div class="step-box">
+                <strong>Step 7:</strong> Download or Copy
+                <p>Save the generated content as JSON or copy it to your clipboard.</p>
+            </div>
+
+            <h3>What You'll Get:</h3>
+            <ul>
+                <li><strong>Key Points:</strong> 7-10 high-yield points covering the topic comprehensively</li>
+                <li><strong>Mnemonics:</strong> Memory aids to help you remember complex concepts</li>
+                <li><strong>Clinical Pearls:</strong> Important clinical tips and exam-relevant information</li>
+                <li><strong>Practice Questions:</strong> MCQs with detailed explanations</li>
+            </ul>
+
+            <div class="tip-box">
+                <strong>💡 Bulk Generation:</strong> Use the "📦 Bulk Generate" button to create content for an entire
+                subject at once. This is great for comprehensive preparation!
+            </div>
+        </div>
+
+        <!-- Study Tools -->
+        <div class="help-section">
+            <h2>📚 Study Tools Guide</h2>
+
+            <h3>1. Flashcards</h3>
+            <p>Perfect for quick revision and memorization:</p>
+            <ul>
+                <li>Click on a flashcard to flip and see the answer</li>
+                <li>Use arrow buttons to navigate between cards</li>
+                <li>Shuffle cards for randomized practice</li>
+                <li>Mark cards as "Know" or "Don't Know" to track progress</li>
+            </ul>
+
+            <h3>2. Mock Tests</h3>
+            <p>Simulate real exam conditions:</p>
+            <ul>
+                <li>Select subject and number of questions</li>
+                <li>Set a time limit (optional)</li>
+                <li>Answer all questions before submitting</li>
+                <li>Review your score and detailed explanations</li>
+            </ul>
+
+            <h3>3. Pomodoro Timer</h3>
+            <p>Boost your productivity with focused study sessions:</p>
+            <ul>
+                <li>Default: 25 minutes focus, 5 minutes break</li>
+                <li>Customize duration to suit your needs</li>
+                <li>Track total study time and sessions completed</li>
+                <li>Take regular breaks to maintain focus</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ Important:</strong> All your flashcard progress and test results are saved in your browser.
+                Clearing browser data will reset your progress.
+            </div>
+        </div>
+
+        <!-- Content Management System -->
+        <div class="help-section">
+            <h2>📝 Content Management System (CMS)</h2>
+            <p>Create and organize your own study materials:</p>
+
+            <h3>Features:</h3>
+            <ul>
+                <li><strong>Create Content:</strong> Write your own notes and summaries</li>
+                <li><strong>Edit Content:</strong> Update existing materials anytime</li>
+                <li><strong>Question Bank:</strong> Build your own collection of practice questions</li>
+                <li><strong>Import/Export:</strong> Share content with classmates or backup your work</li>
+                <li><strong>Dashboard:</strong> View statistics and manage all your content</li>
+            </ul>
+
+            <h3>How to Use:</h3>
+            <ol>
+                <li>Click "CMS" in the navigation menu</li>
+                <li>Use the sidebar to navigate between sections</li>
+                <li>Click "New Content" to create study materials</li>
+                <li>Fill in subject, chapter, and content details</li>
+                <li>Save and organize your materials</li>
+            </ol>
+        </div>
+
+        <!-- Tips for Success -->
+        <div class="help-section">
+            <h2>🎓 Tips for Exam Success</h2>
+
+            <h3>Study Strategy:</h3>
+            <ol>
+                <li><strong>Start Early:</strong> Begin preparation at least 3 months before exams</li>
+                <li><strong>Use AI Generator:</strong> Create comprehensive notes for all topics</li>
+                <li><strong>Practice Daily:</strong> Solve at least 20-30 MCQs every day</li>
+                <li><strong>Review Regularly:</strong> Use flashcards for quick revision</li>
+                <li><strong>Take Mock Tests:</strong> Simulate exam conditions weekly</li>
+                <li><strong>Track Progress:</strong> Monitor your performance and adjust strategy</li>
+            </ol>
+
+            <h3>Best Practices:</h3>
+            <ul>
+                <li>Focus on high-yield topics first</li>
+                <li>Understand concepts, don't just memorize</li>
+                <li>Use mnemonics for complex topics</li>
+                <li>Practice clinical scenarios regularly</li>
+                <li>Review your mistakes and weak areas</li>
+                <li>Take breaks to avoid burnout</li>
+            </ul>
+
+            <div class="tip-box">
+                <strong>💡 Study Schedule:</strong> Use the Pomodoro timer for focused 25-minute study sessions. Take
+                5-minute breaks between sessions and a longer 15-30 minute break after 4 sessions.
+            </div>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="help-section">
+            <h2>🔧 Troubleshooting</h2>
+
+            <h3>Common Issues:</h3>
+
+            <h4>Content not generating?</h4>
+            <ul>
+                <li>Check your internet connection</li>
+                <li>Wait 10-15 seconds for AI to process</li>
+                <li>Try refreshing the page</li>
+                <li>Try a different topic or subject</li>
+            </ul>
+
+            <h4>Progress not saving?</h4>
+            <ul>
+                <li>Ensure browser cookies are enabled</li>
+                <li>Don't use incognito/private mode</li>
+                <li>Check browser storage settings</li>
+            </ul>
+
+            <h4>Page loading slowly?</h4>
+            <ul>
+                <li>Clear browser cache</li>
+                <li>Close unnecessary tabs</li>
+                <li>Try a different browser</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ Browser Compatibility:</strong> This platform works best on Chrome, Firefox, Safari, and
+                Edge. Make sure you're using an updated browser version.
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="help-section">
+            <h2>🔗 Quick Access Links</h2>
+            <div class="quick-links">
+                <a href="index.html" class="quick-link">
+                    <div class="icon">🏠</div>
+                    <div class="title">Home</div>
+                </a>
+                <a href="content-generator.html" class="quick-link">
+                    <div class="icon">🤖</div>
+                    <div class="title">AI Generator</div>
+                </a>
+                <a href="study-tools.html" class="quick-link">
+                    <div class="icon">📚</div>
+                    <div class="title">Study Tools</div>
+                </a>
+                <a href="cms.html" class="quick-link">
+                    <div class="icon">📝</div>
+                    <div class="title">CMS</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="help-section">
+            <h2>❓ Frequently Asked Questions</h2>
+
+            <h3>Is this platform free to use?</h3>
+            <p>Yes! All features are completely free for MBBS students.</p>
+
+            <h3>Do I need to create an account?</h3>
+            <p>No account needed! All your data is stored locally in your browser.</p>
+
+            <h3>Can I use this offline?</h3>
+            <p>The AI Content Generator requires internet connection. Other features like flashcards and saved content
+                work offline.</p>
+
+            <h3>How accurate is the AI-generated content?</h3>
+            <p>The AI uses advanced models trained on medical literature. However, always cross-reference with your
+                textbooks and verify information.</p>
+
+            <h3>Can I share my generated content?</h3>
+            <p>Yes! Use the download feature to save content as JSON and share with classmates.</p>
+
+            <h3>Will my progress sync across devices?</h3>
+            <p>Currently, progress is stored locally per browser. Export your content to transfer between devices.</p>
+        </div>
+
+        <!-- Contact -->
+        <div class="help-section">
+            <h2>📧 Need More Help?</h2>
+            <p>If you have questions or need assistance:</p>
+            <ul>
+                <li>Check the documentation in each section</li>
+                <li>Review this help guide</li>
+                <li>Experiment with the features - they're designed to be intuitive!</li>
+            </ul>
+
+            <div class="tip-box">
+                <strong>💡 Remember:</strong> This platform is designed to supplement your textbook study, not replace
+                it. Always refer to standard textbooks (Boloor, SRB, OP Ghai, DC Datta, PL Dhingra, AK Khurana) for
+                comprehensive preparation.
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding: 2rem; color: #a0aec0;">
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">Good luck with your MBBS final year exams! 🎓</p>
+            <a href="index.html" class="quick-link" style="display: inline-block; max-width: 200px;">
+                <div class="icon">🏠</div>
+                <div class="title">Back to Home</div>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
