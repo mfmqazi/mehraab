@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Key Setup - Mehraab MBBS Exam Prep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="api-key-manager.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1e2442 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(30, 36, 66, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #a0aec0;
+            margin-bottom: 2rem;
+        }
+
+        .status {
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .status.success {
+            background: rgba(72, 187, 120, 0.1);
+            border: 1px solid rgba(72, 187, 120, 0.3);
+            color: #48bb78;
+        }
+
+        .status.warning {
+            background: rgba(237, 137, 54, 0.1);
+            border: 1px solid rgba(237, 137, 54, 0.3);
+            color: #ed8936;
+        }
+
+        .status-icon {
+            font-size: 2rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .info-box {
+            background: rgba(102, 126, 234, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-box h3 {
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .info-box ul {
+            padding-left: 1.5rem;
+            color: #a0aec0;
+        }
+
+        .info-box li {
+            margin-bottom: 0.5rem;
+        }
+
+        .links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .link-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .link-card .icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .link-card .title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .link-card .desc {
+            font-size: 0.875rem;
+            color: #a0aec0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🔑 API Key Setup</h1>
+            <p class="subtitle">Secure configuration for AI-powered features</p>
+
+            <div id="statusBox" class="status warning">
+                <span class="status-icon">⚠️</span>
+                <div>
+                    <strong>API Key Not Configured</strong>
+                    <p style="font-size: 0.875rem; margin-top: 0.25rem;">Click below to set up your Gemini API key</p>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="setupAPIKey()">
+                🚀 Set Up API Key
+            </button>
+
+            <button class="btn btn-secondary" onclick="clearAPIKey()">
+                🗑️ Clear Existing Key
+            </button>
+
+            <div class="info-box">
+                <h3>🔒 How Your API Key is Protected</h3>
+                <ul>
+                    <li>Stored only in your browser's localStorage</li>
+                    <li>Encrypted with base64 obfuscation</li>
+                    <li>Never committed to GitHub or shared</li>
+                    <li>Only used for Google Gemini API calls</li>
+                    <li>Can be cleared anytime</li>
+                </ul>
+            </div>
+
+            <div class="info-box" style="margin-top: 1rem;">
+                <h3>📝 How to Get Your API Key</h3>
+                <ul>
+                    <li>Visit <a href="https://ai.google.dev" target="_blank" style="color: #667eea;">ai.google.dev</a>
+                    </li>
+                    <li>Sign in with your Google account</li>
+                    <li>Click "Get API key" → "Create API key"</li>
+                    <li>Copy the generated key (starts with AIza...)</li>
+                    <li>Paste it when prompted above</li>
+                </ul>
+            </div>
+
+            <div class="links">
+                <a href="index.html" class="link-card">
+                    <div class="icon">🏠</div>
+                    <div class="title">Home</div>
+                    <div class="desc">Main platform</div>
+                </a>
+                <a href="content-generator.html" class="link-card">
+                    <div class="icon">🤖</div>
+                    <div class="title">AI Generator</div>
+                    <div class="desc">Create content</div>
+                </a>
+                <a href="cms.html" class="link-card">
+                    <div class="icon">📝</div>
+                    <div class="title">CMS</div>
+                    <div class="desc">Manage content</div>
+                </a>
+                <a href="study-tools.html" class="link-card">
+                    <div class="icon">📚</div>
+                    <div class="title">Study Tools</div>
+                    <div class="desc">Flashcards & tests</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check API key status on load
+        function checkAPIKeyStatus() {
+            const hasKey = window.apiKeyManager.hasAPIKey();
+            const statusBox = document.getElementById('statusBox');
+
+            if (hasKey) {
+                statusBox.className = 'status success';
+                statusBox.innerHTML = `
+                    <span class="status-icon">✅</span>
+                    <div>
+                        <strong>API Key Configured</strong>
+                        <p style="font-size: 0.875rem; margin-top: 0.25rem;">You're all set to use AI features!</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function setupAPIKey() {
+            try {
+                await window.apiKeyManager.promptForAPIKey();
+                checkAPIKeyStatus();
+                alert('✅ API key saved successfully! You can now use AI-powered features.');
+            } catch (error) {
+                if (error.message !== 'User cancelled API key setup') {
+                    alert('❌ Error: ' + error.message);
+                }
+            }
+        }
+
+        function clearAPIKey() {
+            if (confirm('Are you sure you want to clear your API key? You will need to enter it again to use AI features.')) {
+                window.apiKeyManager.clearAPIKey();
+                checkAPIKeyStatus();
+                alert('✅ API key cleared successfully.');
+            }
+        }
+
+        // Check status on page load
+        window.addEventListener('DOMContentLoaded', checkAPIKeyStatus);
+    </script>
+</body>
+
+</html>
