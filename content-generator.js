@@ -125,17 +125,119 @@ async function generateContent() {
 
         setOutput(JSON.stringify(formattedContent, null, 2));
 
+        // Automatically save to localStorage for Study Tools
+        saveContentToStudyTools(formattedContent);
+
         // Update stats
         const mnemonicsCount = formattedContent.mnemonics ? Object.keys(formattedContent.mnemonics).length : 0;
         updateStats(1, numQuestions, mnemonicsCount, 0);
 
-        showSuccess(`Content generated successfully for ${topicName}!`);
+        showSuccess(`Content generated and saved! Ready to use in Study Tools ✅`);
     } catch (error) {
         showError(`Error: ${error.message}`);
         setOutput(JSON.stringify({ error: error.message }, null, 2));
     } finally {
         showLoading(false);
     }
+}
+
+// Save generated content to localStorage for Study Tools
+function saveContentToStudyTools(content) {
+    try {
+        // Get existing content library
+        const existingContent = JSON.parse(localStorage.getItem('mbbs_content_library') || '[]');
+
+        // Add new content with unique ID
+        const contentWithId = {
+            ...content,
+            id: Date.now(),
+            addedAt: new Date().toISOString()
+        };
+
+        existingContent.push(contentWithId);
+
+        // Save back to localStorage
+        localStorage.setItem('mbbs_content_library', JSON.stringify(existingContent));
+
+        // Also save flashcards if key points exist
+        if (content.keyPoints && content.keyPoints.length > 0) {
+            saveAsFlashcards(content);
+        }
+
+        // Save practice questions for mock tests
+        if (content.practiceQuestions && content.practiceQuestions.length > 0) {
+            savePracticeQuestions(content);
+        }
+
+        console.log('✅ Content automatically saved to Study Tools');
+    } catch (error) {
+        console.error('Error saving to Study Tools:', error);
+    }
+}
+
+// Convert key points to flashcards
+function saveAsFlashcards(content) {
+    const flashcards = JSON.parse(localStorage.getItem('mbbs_flashcards') || '{}');
+
+    if (!flashcards[content.subject]) {
+        flashcards[content.subject] = {};
+    }
+
+    if (!flashcards[content.subject][content.topic]) {
+        flashcards[content.subject][content.topic] = [];
+    }
+
+    // Create flashcards from key points
+    content.keyPoints.forEach((point, index) => {
+        flashcards[content.subject][content.topic].push({
+            id: `${Date.now()}_${index}`,
+            question: `What is key point #${index + 1} about ${content.topic}?`,
+            answer: point,
+            subject: content.subject,
+            topic: content.topic,
+            difficulty: 'medium'
+        });
+    });
+
+    // Add mnemonic flashcards if available
+    if (content.mnemonics) {
+        Object.entries(content.mnemonics).forEach(([acronym, explanation], index) => {
+            flashcards[content.subject][content.topic].push({
+                id: `${Date.now()}_mnemonic_${index}`,
+                question: `What does ${acronym} stand for in ${content.topic}?`,
+                answer: explanation,
+                subject: content.subject,
+                topic: content.topic,
+                difficulty: 'easy'
+            });
+        });
+    }
+
+    localStorage.setItem('mbbs_flashcards', JSON.stringify(flashcards));
+    console.log('✅ Flashcards created automatically');
+}
+
+// Save practice questions for mock tests
+function savePracticeQuestions(content) {
+    const questions = JSON.parse(localStorage.getItem('mbbs_practice_questions') || '[]');
+
+    content.practiceQuestions.forEach(q => {
+        questions.push({
+            id: Date.now() + Math.random(),
+            subject: content.subject,
+            topic: content.topic,
+            chapter: content.chapter,
+            question: q.question,
+            options: q.options,
+            correctAnswer: q.correctAnswer,
+            explanation: q.explanation,
+            difficulty: 'medium',
+            addedAt: new Date().toISOString()
+        });
+    });
+
+    localStorage.setItem('mbbs_practice_questions', JSON.stringify(questions));
+    console.log('✅ Practice questions saved for mock tests');
 }
 
 // Create prompt for Gemini
