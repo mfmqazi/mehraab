@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRB's Manual of Surgery - MBBS Exam Prep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .pdf-container {
+            display: flex;
+            height: 100vh;
+            background: #0a0e27;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: #151933;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .sidebar h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .chapter-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .chapter-item {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .chapter-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-left-color: #667eea;
+        }
+
+        .chapter-item.active {
+            background: rgba(102, 126, 234, 0.2);
+            border-left-color: #667eea;
+        }
+
+        .chapter-number {
+            font-weight: 600;
+            color: #667eea;
+            margin-right: 0.5rem;
+        }
+
+        .chapter-title {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .pdf-viewer {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #1e2442;
+        }
+
+        .pdf-header {
+            padding: 1rem 2rem;
+            background: #151933;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pdf-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin: 0;
+        }
+
+        .pdf-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .pdf-controls button {
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 0.5rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .pdf-controls input {
+            width: 60px;
+            padding: 0.5rem;
+            background: #0a0e27;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            color: white;
+            text-align: center;
+        }
+
+        .pdf-content {
+            flex: 1;
+            overflow: auto;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        #pdf-canvas {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #a0aec0;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .back-button {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .pdf-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pdf-container">
+        <!-- Sidebar with Chapters -->
+        <div class="sidebar">
+            <h2>📚 SRB Surgery</h2>
+            <p style="color: #a0aec0; font-size: 0.9rem; margin-bottom: 1.5rem;">6th Edition</p>
+
+            <ul class="chapter-list" id="chapterList">
+                <!-- Chapters will be loaded here -->
+            </ul>
+        </div>
+
+        <!-- PDF Viewer -->
+        <div class="pdf-viewer">
+            <div class="pdf-header">
+                <div>
+                    <a href="index.html" class="back-button">← Back to Home</a>
+                </div>
+                <h1 id="currentChapter">SRB's Manual of Surgery</h1>
+                <div class="pdf-controls">
+                    <button onclick="previousPage()">◀ Previous</button>
+                    <span style="color: #a0aec0;">
+                        Page <input type="number" id="pageNum" value="1" min="1" onchange="goToPage()">
+                        of <span id="pageCount">-</span>
+                    </span>
+                    <button onclick="nextPage()">Next ▶</button>
+                    <button onclick="zoomIn()">🔍+</button>
+                    <button onclick="zoomOut()">🔍-</button>
+                </div>
+            </div>
+
+            <div class="pdf-content" id="pdfContent">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading PDF...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        // Configure PDF.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        // SRB Surgery Chapters (approximate page numbers - adjust based on actual PDF)
+        const chapters = [
+            { number: 1, title: "Wounds, Wound Healing and Ulcers", page: 1 },
+            { number: 2, title: "Gangrene and Sinuses", page: 15 },
+            { number: 3, title: "Cysts", page: 25 },
+            { number: 4, title: "Tumors", page: 35 },
+            { number: 5, title: "Skin and Subcutaneous Tissue", page: 50 },
+            { number: 6, title: "Lymphatics", page: 65 },
+            { number: 7, title: "Blood Vessels", page: 80 },
+            { number: 8, title: "Peripheral Nerve Injuries", page: 100 },
+            { number: 9, title: "Head Injury", page: 115 },
+            { number: 10, title: "Neck", page: 130 },
+            { number: 11, title: "Thyroid", page: 145 },
+            { number: 12, title: "Parathyroid", page: 165 },
+            { number: 13, title: "Breast", page: 175 },
+            { number: 14, title: "Chest Wall", page: 195 },
+            { number: 15, title: "Esophagus", page: 210 },
+            { number: 16, title: "Stomach and Duodenum", page: 230 },
+            { number: 17, title: "Small Intestine", page: 255 },
+            { number: 18, title: "Large Intestine", page: 275 },
+            { number: 19, title: "Appendix", page: 300 },
+            { number: 20, title: "Liver", page: 315 },
+            { number: 21, title: "Gallbladder and Bile Ducts", page: 335 },
+            { number: 22, title: "Pancreas", page: 355 },
+            { number: 23, title: "Spleen", page: 375 },
+            { number: 24, title: "Hernias", page: 390 },
+            { number: 25, title: "Acute Abdomen", page: 410 },
+            { number: 26, title: "Peritoneum and Omentum", page: 425 },
+            { number: 27, title: "Kidney and Ureter", page: 440 },
+            { number: 28, title: "Urinary Bladder", page: 460 },
+            { number: 29, title: "Prostate", page: 480 },
+            { number: 30, title: "Urethra and Penis", page: 495 },
+            { number: 31, title: "Testis and Scrotum", page: 510 },
+            { number: 32, title: "Bones and Joints", page: 525 },
+            { number: 33, title: "Fractures and Dislocations", page: 545 }
+        ];
+
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+        let scale = 1.5;
+        const canvas = document.createElement('canvas');
+        canvas.id = 'pdf-canvas';
+
+        // Load PDF
+        const url = 'content/srbs-manual-of-surgery-6nbsped-9352709071-9789352709076_compress.pdf';
+
+        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+            document.getElementById('pageCount').textContent = pdfDoc.numPages;
+
+            // Render first page
+            renderPage(pageNum);
+
+            // Load chapters
+            loadChapters();
+        }).catch(function (error) {
+            document.getElementById('pdfContent').innerHTML = `
+                <div class="loading">
+                    <p style="color: #f56565;">Error loading PDF: ${error.message}</p>
+                    <p style="color: #a0aec0; font-size: 0.9rem;">Make sure the PDF file is in the content folder.</p>
+                </div>
+            `;
+        });
+
+        function renderPage(num) {
+            pageRendering = true;
+
+            pdfDoc.getPage(num).then(function (page) {
+                const viewport = page.getViewport({ scale: scale });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                const renderContext = {
+                    canvasContext: canvas.getContext('2d'),
+                    viewport: viewport
+                };
+
+                const renderTask = page.render(renderContext);
+                renderTask.promise.then(function () {
+                    pageRendering = false;
+
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+
+                    // Update UI
+                    document.getElementById('pageNum').value = num;
+                    document.getElementById('pdfContent').innerHTML = '';
+                    document.getElementById('pdfContent').appendChild(canvas);
+                });
+            });
+        }
+
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+
+        function previousPage() {
+            if (pageNum <= 1) return;
+            pageNum--;
+            queueRenderPage(pageNum);
+        }
+
+        function nextPage() {
+            if (pageNum >= pdfDoc.numPages) return;
+            pageNum++;
+            queueRenderPage(pageNum);
+        }
+
+        function goToPage() {
+            const page = parseInt(document.getElementById('pageNum').value);
+            if (page >= 1 && page <= pdfDoc.numPages) {
+                pageNum = page;
+                queueRenderPage(pageNum);
+            }
+        }
+
+        function zoomIn() {
+            scale += 0.25;
+            queueRenderPage(pageNum);
+        }
+
+        function zoomOut() {
+            if (scale > 0.5) {
+                scale -= 0.25;
+                queueRenderPage(pageNum);
+            }
+        }
+
+        function loadChapters() {
+            const chapterList = document.getElementById('chapterList');
+            chapterList.innerHTML = chapters.map(chapter => `
+                <li class="chapter-item" onclick="goToChapter(${chapter.page}, '${chapter.title}')">
+                    <span class="chapter-number">Ch ${chapter.number}</span>
+                    <span class="chapter-title">${chapter.title}</span>
+                </li>
+            `).join('');
+        }
+
+        function goToChapter(page, title) {
+            pageNum = page;
+            queueRenderPage(pageNum);
+            document.getElementById('currentChapter').textContent = title;
+
+            // Update active chapter
+            document.querySelectorAll('.chapter-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.chapter-item').classList.add('active');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') previousPage();
+            if (e.key === 'ArrowRight') nextPage();
+        });
+    </script>
+</body>
+
+</html>
