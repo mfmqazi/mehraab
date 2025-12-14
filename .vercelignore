@@ -1,3 +1,0 @@
-# Exclude large PDF files from Vercel deployment
-# These will need to be hosted on a CDN or external storage
-content/*.pdf
