@@ -19,7 +19,7 @@
         }
 
         .sidebar {
-            width: 300px;
+            width: 350px;
             background: #151933;
             border-right: 1px solid rgba(255, 255, 255, 0.1);
             overflow-y: auto;
@@ -30,8 +30,9 @@
             font-family: 'Outfit', sans-serif;
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -51,18 +52,18 @@
         }
 
         .chapter-item:hover {
-            background: rgba(102, 126, 234, 0.1);
-            border-left-color: #667eea;
+            background: rgba(79, 172, 254, 0.1);
+            border-left-color: #4facfe;
         }
 
         .chapter-item.active {
-            background: rgba(102, 126, 234, 0.2);
-            border-left-color: #667eea;
+            background: rgba(79, 172, 254, 0.2);
+            border-left-color: #4facfe;
         }
 
         .chapter-number {
             font-weight: 600;
-            color: #667eea;
+            color: #4facfe;
             margin-right: 0.5rem;
         }
 
@@ -102,7 +103,7 @@
 
         .pdf-controls button {
             padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             border: none;
             border-radius: 0.5rem;
             color: white;
@@ -112,7 +113,7 @@
 
         .pdf-controls button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.4);
         }
 
         .pdf-controls input {
@@ -150,7 +151,7 @@
 
         .spinner {
             border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top: 3px solid #667eea;
+            border-top: 3px solid #4facfe;
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -199,7 +200,7 @@
     <div class="pdf-container">
         <div class="sidebar">
             <h2>📚 Medicine</h2>
-            <p style="color: #a0aec0; font-size: 0.9rem; margin-bottom: 1.5rem;">Archit Boloor - 3rd Edition</p>
+            <p style="color: #a0aec0; font-size: 0.9rem; margin-bottom: 1.5rem;">Archit Boloor</p>
 
             <ul class="chapter-list" id="chapterList"></ul>
         </div>
@@ -235,12 +236,31 @@
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-        // Placeholder chapters - update with actual TOC
         const chapters = [
-            { number: 1, title: "Chapter 1", page: 1 },
-            { number: 2, title: "Chapter 2", page: 50 },
-            { number: 3, title: "Chapter 3", page: 100 }
-            // Add more chapters with correct page numbers
+            { number: 1, title: "Nutrition and Environmental Medicine", page: 42 },
+            { number: 2, title: "Endocrinology", page: 79 },
+            { number: 3, title: "Diabetes Mellitus", page: 135 },
+            { number: 4, title: "Infectious Diseases", page: 175 },
+            { number: 5, title: "HIV Infection and AIDS", page: 265 },
+            { number: 6, title: "Respiratory System", page: 308 },
+            { number: 7, title: "Cardiology", page: 447 },
+            { number: 8, title: "Hematology", page: 606 },
+            { number: 9, title: "Rheumatology and Connective Tissue Disorders", page: 724 },
+            { number: 10, title: "Gastroenterology", page: 776 },
+            { number: 11, title: "Hepatobiliary System", page: 833 },
+            { number: 12, title: "Pancreas", page: 905 },
+            { number: 13, title: "Kidney", page: 919 },
+            { number: 14, title: "Fluid and Electrolyte Disturbances", page: 975 },
+            { number: 15, title: "Neurology", page: 1009 },
+            { number: 16, title: "Toxicology", page: 1113 },
+            { number: 17, title: "Oncology", page: 1135 },
+            { number: 18, title: "Psychiatry", page: 1163 },
+            { number: 19, title: "Genetics", page: 1198 },
+            { number: 20, title: "Immunology", page: 1217 },
+            { number: 21, title: "Geriatrics", page: 1240 },
+            { number: 22, title: "Dermatology, Venereology and Leprosy", page: 1257 },
+            { number: 23, title: "Clinical Pharmacology", page: 1299 },
+            { number: 24, title: "Emergencies in Medical Practice", page: 1307 }
         ];
 
         let pdfDoc = null;
@@ -251,40 +271,17 @@
         const canvas = document.createElement('canvas');
         canvas.id = 'pdf-canvas';
 
-        const url = '/api/pdf-proxy?pdf=medicine-archit-boloor';
+        const url = 'content/medicine-archit-boloor.pdf';
 
-        const loadingTask = pdfjsLib.getDocument({
-            url: url,
-            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
-            cMapPacked: true,
-            disableAutoFetch: false,
-            disableStream: false
-        });
-
-        loadingTask.promise.then(function (pdfDoc_) {
+        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;
             document.getElementById('pageCount').textContent = pdfDoc.numPages;
             renderPage(pageNum);
             loadChapters();
         }).catch(function (error) {
-            console.error('PDF Loading Error:', error);
             document.getElementById('pdfContent').innerHTML = `
                 <div class="loading">
-                    <p style="color: #f56565; font-size: 1.2rem; margin-bottom: 1rem;">⚠️ Error Loading PDF</p>
-                    <p style="color: #fff; margin-bottom: 0.5rem;"><strong>Error:</strong> ${error.message}</p>
-                    <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem; max-width: 600px;">
-                        <p style="color: #a0aec0; font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Possible Solutions:</strong></p>
-                        <ul style="color: #a0aec0; font-size: 0.9rem; text-align: left; line-height: 1.6;">
-                            <li>The PDF file may be corrupted. Try re-downloading it.</li>
-                            <li>Make sure you're accessing the page through a web server (not file:// protocol)</li>
-                            <li>Check browser console (F12) for detailed error messages</li>
-                            <li>Try a different browser or clear your browser cache</li>
-                            <li>Ensure the PDF file exists at: <code>content/medicine-archit-boloor.pdf</code></li>
-                        </ul>
-                        <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 0.5rem; color: white; cursor: pointer;">
-                            🔄 Retry Loading
-                        </button>
-                    </div>
+                    <p style="color: #f56565;">Error loading PDF: ${error.message}</p>
                 </div>
             `;
         });

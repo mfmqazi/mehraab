@@ -241,40 +241,41 @@
         // Configure PDF.js
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
+        // SRB Surgery Chapters (approximate page numbers - adjust based on actual PDF)
         const chapters = [
-            { number: 1, title: "General Surgery", page: 13 },
-            { number: 2, title: "Faciomaxillary Diseases", page: 350 },
-            { number: 3, title: "Oral Cavity", page: 368 },
-            { number: 4, title: "Salivary Glands", page: 404 },
-            { number: 5, title: "Neck", page: 426 },
-            { number: 6, title: "Thyroid", page: 455 },
-            { number: 7, title: "Parathyroids and Adrenals", page: 501 },
-            { number: 8, title: "Breast", page: 516 },
-            { number: 9, title: "Peritoneum", page: 569 },
-            { number: 10, title: "Abdominal Tuberculosis", page: 585 },
-            { number: 11, title: "Liver", page: 596 },
-            { number: 12, title: "Gallbladder", page: 635 },
-            { number: 13, title: "Spleen", page: 672 },
-            { number: 14, title: "Pancreas", page: 684 },
-            { number: 15, title: "Retroperitoneal Space", page: 721 },
-            { number: 16, title: "Differential Diagnosis of Mass Abdomen", page: 728 },
-            { number: 17, title: "Abdominal Wall and Umbilicus", page: 740 },
-            { number: 18, title: "Hernia", page: 751 },
-            { number: 19, title: "Oesophagus", page: 788 },
-            { number: 20, title: "Stomach", page: 816 },
-            { number: 21, title: "Small Intestine", page: 864 },
-            { number: 22, title: "Large Intestine", page: 888 },
-            { number: 23, title: "Intestinal Obstruction", page: 920 },
-            { number: 24, title: "Appendix", page: 940 },
-            { number: 25, title: "Rectum and Anal Canal", page: 954 },
-            { number: 26, title: "Urology", page: 996 },
-            { number: 27, title: "Neurosurgery", page: 1088 },
-            { number: 28, title: "Thorax", page: 1109 },
-            { number: 29, title: "Cardiac Surgery", page: 1130 },
-            { number: 30, title: "Adjuvant Therapy", page: 1138 },
-            { number: 31, title: "Advanced Imaging Methods", page: 1150 },
-            { number: 32, title: "Operative Surgery", page: 1156 },
-            { number: 33, title: "Miscellaneous", page: 1180 }
+            { number: 1, title: "Wounds, Wound Healing and Ulcers", page: 1 },
+            { number: 2, title: "Gangrene and Sinuses", page: 15 },
+            { number: 3, title: "Cysts", page: 25 },
+            { number: 4, title: "Tumors", page: 35 },
+            { number: 5, title: "Skin and Subcutaneous Tissue", page: 50 },
+            { number: 6, title: "Lymphatics", page: 65 },
+            { number: 7, title: "Blood Vessels", page: 80 },
+            { number: 8, title: "Peripheral Nerve Injuries", page: 100 },
+            { number: 9, title: "Head Injury", page: 115 },
+            { number: 10, title: "Neck", page: 130 },
+            { number: 11, title: "Thyroid", page: 145 },
+            { number: 12, title: "Parathyroid", page: 165 },
+            { number: 13, title: "Breast", page: 175 },
+            { number: 14, title: "Chest Wall", page: 195 },
+            { number: 15, title: "Esophagus", page: 210 },
+            { number: 16, title: "Stomach and Duodenum", page: 230 },
+            { number: 17, title: "Small Intestine", page: 255 },
+            { number: 18, title: "Large Intestine", page: 275 },
+            { number: 19, title: "Appendix", page: 300 },
+            { number: 20, title: "Liver", page: 315 },
+            { number: 21, title: "Gallbladder and Bile Ducts", page: 335 },
+            { number: 22, title: "Pancreas", page: 355 },
+            { number: 23, title: "Spleen", page: 375 },
+            { number: 24, title: "Hernias", page: 390 },
+            { number: 25, title: "Acute Abdomen", page: 410 },
+            { number: 26, title: "Peritoneum and Omentum", page: 425 },
+            { number: 27, title: "Kidney and Ureter", page: 440 },
+            { number: 28, title: "Urinary Bladder", page: 460 },
+            { number: 29, title: "Prostate", page: 480 },
+            { number: 30, title: "Urethra and Penis", page: 495 },
+            { number: 31, title: "Testis and Scrotum", page: 510 },
+            { number: 32, title: "Bones and Joints", page: 525 },
+            { number: 33, title: "Fractures and Dislocations", page: 545 }
         ];
 
         let pdfDoc = null;
@@ -286,18 +287,9 @@
         canvas.id = 'pdf-canvas';
 
         // Load PDF
-        const url = '/api/pdf-proxy?pdf=srb-surgery-6th';
+        const url = 'content/srb-surgery-6th.pdf';
 
-        // Load PDF with better error handling
-        const loadingTask = pdfjsLib.getDocument({
-            url: url,
-            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
-            cMapPacked: true,
-            disableAutoFetch: false,
-            disableStream: false
-        });
-
-        loadingTask.promise.then(function (pdfDoc_) {
+        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;
             document.getElementById('pageCount').textContent = pdfDoc.numPages;
 
@@ -307,24 +299,10 @@
             // Load chapters
             loadChapters();
         }).catch(function (error) {
-            console.error('PDF Loading Error:', error);
             document.getElementById('pdfContent').innerHTML = `
                 <div class="loading">
-                    <p style="color: #f56565; font-size: 1.2rem; margin-bottom: 1rem;">⚠️ Error Loading PDF</p>
-                    <p style="color: #fff; margin-bottom: 0.5rem;"><strong>Error:</strong> ${error.message}</p>
-                    <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem; max-width: 600px;">
-                        <p style="color: #a0aec0; font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Possible Solutions:</strong></p>
-                        <ul style="color: #a0aec0; font-size: 0.9rem; text-align: left; line-height: 1.6;">
-                            <li>The PDF file may be corrupted. Try re-downloading it.</li>
-                            <li>Make sure you're accessing the page through a web server (not file:// protocol)</li>
-                            <li>Check browser console (F12) for detailed error messages</li>
-                            <li>Try a different browser or clear your browser cache</li>
-                            <li>Ensure the PDF file exists at: <code>content/srb-surgery-6th.pdf</code></li>
-                        </ul>
-                        <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 0.5rem; color: white; cursor: pointer;">
-                            🔄 Retry Loading
-                        </button>
-                    </div>
+                    <p style="color: #f56565;">Error loading PDF: ${error.message}</p>
+                    <p style="color: #a0aec0; font-size: 0.9rem;">Make sure the PDF file is in the content folder.</p>
                 </div>
             `;
         });

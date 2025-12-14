@@ -236,48 +236,36 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
         const chapters = [
-            { number: 1, title: "Anatomy of Female Reproductive Organs", page: 24 },
-            { number: 2, title: "Fundamentals of Reproduction", page: 42 },
-            { number: 3, title: "The Placenta and Fetal Membranes", page: 55 },
-            { number: 4, title: "The Fetus", page: 69 },
-            { number: 5, title: "Physiological Changes During Pregnancy", page: 75 },
-            { number: 6, title: "Endocrinology in Relation to Reproduction", page: 88 },
-            { number: 7, title: "Diagnosis of Pregnancy", page: 96 },
-            { number: 8, title: "The Fetus-in-Utero", page: 108 },
-            { number: 9, title: "Fetal Skull and Maternal Pelvis", page: 117 },
-            { number: 10, title: "Antenatal Care, Preconceptional Counseling", page: 129 },
-            { number: 11, title: "Antenatal Assessment of Fetal Well-Being", page: 142 },
-            { number: 12, title: "Prenatal Genetic Counseling and Diagnosis", page: 150 },
-            { number: 13, title: "Normal Labor", page: 157 },
-            { number: 14, title: "Normal Puerperium", page: 191 },
-            { number: 15, title: "Vomiting in Pregnancy", page: 203 },
-            { number: 16, title: "Hemorrhage in Early Pregnancy", page: 208 },
-            { number: 17, title: "Multiple Pregnancy, Amniotic Fluid Disorders", page: 256 },
-            { number: 18, title: "Hypertensive Disorders in Pregnancy", page: 278 },
-            { number: 19, title: "Antepartum Hemorrhage", page: 305 },
-            { number: 20, title: "Medical and Surgical Illness", page: 326 },
-            { number: 21, title: "Gynecological Disorders in Pregnancy", page: 379 },
-            { number: 22, title: "Preterm Labor, PROM, Postmaturity, IUFD", page: 388 },
-            { number: 23, title: "Complicated Pregnancy", page: 404 },
-            { number: 24, title: "Contracted Pelvis", page: 425 },
-            { number: 25, title: "Abnormal Uterine Action", page: 438 },
-            { number: 26, title: "Malposition, Malpresentation, Cord Prolapse", page: 447 },
-            { number: 27, title: "Prolonged Labor, Obstructed Labor", page: 486 },
-            { number: 28, title: "Complications of Third Stage of Labor", page: 497 },
-            { number: 29, title: "Injuries to the Birth Canal", page: 512 },
-            { number: 30, title: "Abnormalities of the Puerperium", page: 523 },
-            { number: 31, title: "The Term Newborn Infant", page: 537 },
-            { number: 32, title: "Low Birth Weight Baby", page: 550 },
-            { number: 33, title: "Disease of the Fetus and Newborn", page: 564 },
-            { number: 34, title: "Pharmacotherapeutics in Obstetrics", page: 596 },
-            { number: 35, title: "Induction of Labor", page: 621 },
-            { number: 36, title: "Population Dynamics and Contraception", page: 632 },
-            { number: 37, title: "Operative Obstetrics", page: 665 },
-            { number: 38, title: "Safe Motherhood, Epidemiology", page: 703 },
-            { number: 39, title: "Special Topics in Obstetrics", page: 715 },
-            { number: 40, title: "Current Topics in Obstetrics", page: 749 },
-            { number: 41, title: "Imaging in Obstetrics", page: 755 },
-            { number: 42, title: "Practical Obstetrics", page: 770 }
+            { number: 1, title: "Anatomy of Female Pelvis", page: 1 },
+            { number: 2, title: "Physiology of Menstruation", page: 15 },
+            { number: 3, title: "Pregnancy Diagnosis", page: 30 },
+            { number: 4, title: "Antenatal Care", page: 45 },
+            { number: 5, title: "Maternal Adaptations", page: 65 },
+            { number: 6, title: "Fetal Growth and Development", page: 80 },
+            { number: 7, title: "Assessment of Fetal Well-being", page: 95 },
+            { number: 8, title: "Normal Labor", page: 110 },
+            { number: 9, title: "Mechanism of Labor", page: 130 },
+            { number: 10, title: "Management of Normal Labor", page: 145 },
+            { number: 11, title: "Puerperium", page: 165 },
+            { number: 12, title: "Abnormal Labor", page: 180 },
+            { number: 13, title: "Preterm Labor", page: 200 },
+            { number: 14, title: "Post-term Pregnancy", page: 215 },
+            { number: 15, title: "Induction of Labor", page: 230 },
+            { number: 16, title: "Operative Obstetrics", page: 245 },
+            { number: 17, title: "Antepartum Hemorrhage", page: 265 },
+            { number: 18, title: "Postpartum Hemorrhage", page: 285 },
+            { number: 19, title: "Hypertensive Disorders", page: 305 },
+            { number: 20, title: "Medical Disorders in Pregnancy", page: 330 },
+            { number: 21, title: "Infections in Pregnancy", page: 355 },
+            { number: 22, title: "Multiple Pregnancy", page: 375 },
+            { number: 23, title: "Malpresentations", page: 390 },
+            { number: 24, title: "Contraception", page: 410 },
+            { number: 25, title: "Infertility", page: 430 },
+            { number: 26, title: "Menstrual Disorders", page: 450 },
+            { number: 27, title: "Genital Infections", page: 470 },
+            { number: 28, title: "Benign Lesions", page: 490 },
+            { number: 29, title: "Gynecological Malignancies", page: 510 },
+            { number: 30, title: "Uterovaginal Prolapse", page: 535 }
         ];
 
         let pdfDoc = null;
@@ -288,41 +276,17 @@
         const canvas = document.createElement('canvas');
         canvas.id = 'pdf-canvas';
 
-        const url = '/api/pdf-proxy?pdf=dc-dutta-obstetrics';
+        const url = 'content/dc-dutta-obstetrics.pdf';
 
-        // Load PDF with better error handling
-        const loadingTask = pdfjsLib.getDocument({
-            url: url,
-            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
-            cMapPacked: true,
-            disableAutoFetch: false,
-            disableStream: false
-        });
-
-        loadingTask.promise.then(function (pdfDoc_) {
+        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;
             document.getElementById('pageCount').textContent = pdfDoc.numPages;
             renderPage(pageNum);
             loadChapters();
         }).catch(function (error) {
-            console.error('PDF Loading Error:', error);
             document.getElementById('pdfContent').innerHTML = `
                 <div class="loading">
-                    <p style="color: #f56565; font-size: 1.2rem; margin-bottom: 1rem;">⚠️ Error Loading PDF</p>
-                    <p style="color: #fff; margin-bottom: 0.5rem;"><strong>Error:</strong> ${error.message}</p>
-                    <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem; max-width: 600px;">
-                        <p style="color: #a0aec0; font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Possible Solutions:</strong></p>
-                        <ul style="color: #a0aec0; font-size: 0.9rem; text-align: left; line-height: 1.6;">
-                            <li>The PDF file may be corrupted. Try re-downloading it.</li>
-                            <li>Make sure you're accessing the page through a web server (not file:// protocol)</li>
-                            <li>Check browser console (F12) for detailed error messages</li>
-                            <li>Try a different browser or clear your browser cache</li>
-                            <li>Ensure the PDF file exists at: <code>content/dc-dutta-obstetrics.pdf</code></li>
-                        </ul>
-                        <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border: none; border-radius: 0.5rem; color: white; cursor: pointer;">
-                            🔄 Retry Loading
-                        </button>
-                    </div>
+                    <p style="color: #f56565;">Error loading PDF: ${error.message}</p>
                 </div>
             `;
         });
