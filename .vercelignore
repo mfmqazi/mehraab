@@ -1,0 +1,2 @@
+# Exclude large PDF files - they're served from GitHub Releases via proxy
+content/*.pdf
