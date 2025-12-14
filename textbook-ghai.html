@@ -236,37 +236,31 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
         const chapters = [
-            { number: 1, title: "Introduction to Pediatrics", page: 6 },
-            { number: 2, title: "Normal Growth and its Disorders", page: 12 },
-            { number: 3, title: "Development", page: 28 },
-            { number: 4, title: "Adolescent Health and Development", page: 48 },
-            { number: 5, title: "Fluid and Electrolyte Disturbances", page: 55 },
-            { number: 6, title: "Nutrition", page: 73 },
-            { number: 7, title: "Micronutrients in Health and Disease", page: 95 },
-            { number: 8, title: "Newborn Infants", page: 109 },
-            { number: 9, title: "Immunization and Immunodeficiency", page: 169 },
-            { number: 10, title: "Infections and Infestations", page: 194 },
-            { number: 11, title: "Diseases of Gastrointestinal System and Liver", page: 263 },
-            { number: 12, title: "Hematological Disorders", page: 315 },
-            { number: 13, title: "Otolaryngology", page: 344 },
-            { number: 14, title: "Disorders of Respiratory System", page: 356 },
-            { number: 15, title: "Disorders of Cardiovascular System", page: 381 },
-            { number: 16, title: "Disorders of Kidney and Urinary Tract", page: 449 },
-            { number: 17, title: "Endocrine and Metabolic Disorders", page: 495 },
-            { number: 18, title: "Central Nervous System", page: 534 },
-            { number: 19, title: "Neuromuscular Disorders", page: 572 },
-            { number: 20, title: "Childhood Malignancies", page: 584 },
-            { number: 21, title: "Rheumatological Disorders", page: 609 },
-            { number: 22, title: "Genetic Disorders", page: 620 },
-            { number: 23, title: "Inborn Errors of Metabolism", page: 632 },
-            { number: 24, title: "Eye Disorders", page: 650 },
-            { number: 25, title: "Skin Disorders", page: 657 },
-            { number: 26, title: "Poisonings, Injuries and Accidents", page: 681 },
-            { number: 27, title: "Pediatric Critical Care", page: 693 },
-            { number: 28, title: "Common Medical Procedures", page: 712 },
-            { number: 29, title: "Rational Drug Therapy", page: 724 },
-            { number: 30, title: "Integrated Management of Neonatal and Childhood Illness", page: 736 },
-            { number: 31, title: "Rights of Children", page: 753 }
+            { number: 1, title: "Growth and Development", page: 1 },
+            { number: 2, title: "Nutrition", page: 25 },
+            { number: 3, title: "Immunization", page: 50 },
+            { number: 4, title: "Neonatology", page: 75 },
+            { number: 5, title: "Genetic and Metabolic Disorders", page: 56 },
+            { number: 6, title: "Fluid and Electrolyte Balance", page: 136 },
+            { number: 7, title: "Infections", page: 161 },
+            { number: 8, title: "Tuberculosis", page: 191 },
+            { number: 9, title: "HIV/AIDS", page: 211 },
+            { number: 10, title: "Respiratory Disorders", page: 231 },
+            { number: 11, title: "Cardiovascular Disorders", page: 261 },
+            { number: 12, title: "Gastrointestinal Disorders", page: 291 },
+            { number: 13, title: "Liver Disorders", page: 321 },
+            { number: 14, title: "Kidney Disorders", page: 346 },
+            { number: 15, title: "Hematological Disorders", page: 376 },
+            { number: 16, title: "Oncology", page: 406 },
+            { number: 17, title: "Endocrine Disorders", page: 431 },
+            { number: 18, title: "Neurological Disorders", page: 461 },
+            { number: 19, title: "Behavioral Disorders", page: 496 },
+            { number: 20, title: "Rheumatological Disorders", page: 521 },
+            { number: 21, title: "Dermatology", page: 546 },
+            { number: 22, title: "Ophthalmology", page: 566 },
+            { number: 23, title: "ENT Disorders", page: 586 },
+            { number: 24, title: "Orthopedics", page: 606 },
+            { number: 25, title: "Accidents and Emergencies", page: 631 }
         ];
 
         let pdfDoc = null;
@@ -277,41 +271,17 @@
         const canvas = document.createElement('canvas');
         canvas.id = 'pdf-canvas';
 
-        const url = '/api/pdf-proxy?pdf=ghai-pediatrics-8th';
+        const url = 'content/ghai-pediatrics-8th.pdf';
 
-        // Load PDF with better error handling
-        const loadingTask = pdfjsLib.getDocument({
-            url: url,
-            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
-            cMapPacked: true,
-            disableAutoFetch: false,
-            disableStream: false
-        });
-
-        loadingTask.promise.then(function (pdfDoc_) {
+        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;
             document.getElementById('pageCount').textContent = pdfDoc.numPages;
             renderPage(pageNum);
             loadChapters();
         }).catch(function (error) {
-            console.error('PDF Loading Error:', error);
             document.getElementById('pdfContent').innerHTML = `
                 <div class="loading">
-                    <p style="color: #f56565; font-size: 1.2rem; margin-bottom: 1rem;">⚠️ Error Loading PDF</p>
-                    <p style="color: #fff; margin-bottom: 0.5rem;"><strong>Error:</strong> ${error.message}</p>
-                    <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem; max-width: 600px;">
-                        <p style="color: #a0aec0; font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Possible Solutions:</strong></p>
-                        <ul style="color: #a0aec0; font-size: 0.9rem; text-align: left; line-height: 1.6;">
-                            <li>The PDF file may be corrupted. Try re-downloading it.</li>
-                            <li>Make sure you're accessing the page through a web server (not file:// protocol)</li>
-                            <li>Check browser console (F12) for detailed error messages</li>
-                            <li>Try a different browser or clear your browser cache</li>
-                            <li>Ensure the PDF file exists at: <code>content/ghai-pediatrics-8th.pdf</code></li>
-                        </ul>
-                        <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border: none; border-radius: 0.5rem; color: white; cursor: pointer;">
-                            🔄 Retry Loading
-                        </button>
-                    </div>
+                    <p style="color: #f56565;">Error loading PDF: ${error.message}</p>
                 </div>
             `;
         });
