@@ -13,6 +13,3 @@ build/
 temp/
 tmp/
 .vercel
-
-# Exclude large PDF textbooks (too large for GitHub)
-content/*.pdf
