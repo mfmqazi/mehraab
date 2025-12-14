@@ -242,41 +242,26 @@
         // Configure PDF.js
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-        // SRB Surgery Chapters (approximate page numbers - adjust based on actual PDF)
+        // SRB Surgery Chapters
         const chapters = [
-            { number: 1, title: "Wounds, Wound Healing and Ulcers", page: 1 },
-            { number: 2, title: "Gangrene and Sinuses", page: 15 },
-            { number: 3, title: "Cysts", page: 25 },
-            { number: 4, title: "Tumors", page: 35 },
-            { number: 5, title: "Skin and Subcutaneous Tissue", page: 50 },
-            { number: 6, title: "Lymphatics", page: 65 },
-            { number: 7, title: "Blood Vessels", page: 80 },
-            { number: 8, title: "Peripheral Nerve Injuries", page: 100 },
-            { number: 9, title: "Head Injury", page: 115 },
-            { number: 10, title: "Neck", page: 130 },
-            { number: 11, title: "Thyroid", page: 145 },
-            { number: 12, title: "Parathyroid", page: 165 },
-            { number: 13, title: "Breast", page: 175 },
-            { number: 14, title: "Chest Wall", page: 195 },
-            { number: 15, title: "Esophagus", page: 210 },
-            { number: 16, title: "Stomach and Duodenum", page: 230 },
-            { number: 17, title: "Small Intestine", page: 255 },
-            { number: 18, title: "Large Intestine", page: 275 },
-            { number: 19, title: "Appendix", page: 300 },
-            { number: 20, title: "Liver", page: 315 },
-            { number: 21, title: "Gallbladder and Bile Ducts", page: 335 },
-            { number: 22, title: "Pancreas", page: 355 },
-            { number: 23, title: "Spleen", page: 375 },
-            { number: 24, title: "Hernias", page: 390 },
-            { number: 25, title: "Acute Abdomen", page: 410 },
-            { number: 26, title: "Peritoneum and Omentum", page: 425 },
-            { number: 27, title: "Kidney and Ureter", page: 440 },
-            { number: 28, title: "Urinary Bladder", page: 460 },
-            { number: 29, title: "Prostate", page: 480 },
-            { number: 30, title: "Urethra and Penis", page: 495 },
-            { number: 31, title: "Testis and Scrotum", page: 510 },
-            { number: 32, title: "Bones and Joints", page: 525 },
-            { number: 33, title: "Fractures and Dislocations", page: 545 }
+            { number: 1, title: "General Surgery", page: 13 },
+            { number: 2, title: "Faciomaxillary Diseases", page: 350 },
+            { number: 3, title: "Oral Cavity", page: 368 },
+            { number: 4, title: "Salivary Glands", page: 404 },
+            { number: 5, title: "Neck", page: 426 },
+            { number: 6, title: "Thyroid", page: 455 },
+            { number: 7, title: "Parathyroids and Adrenals", page: 501 },
+            { number: 8, title: "Breast", page: 516 },
+            { number: 9, title: "Peritoneum", page: 569 },
+            { number: 10, title: "Abdominal Tuberculosis", page: 585 },
+            { number: 11, title: "Liver", page: 596 },
+            { number: 12, title: "Gallbladder", page: 635 },
+            { number: 13, title: "Spleen", page: 672 },
+            { number: 14, title: "Pancreas", page: 684 },
+            { number: 15, title: "Retroperitoneal Space", page: 721 },
+            { number: 16, title: "Differential Diagnosis of Mass Abdomen", page: 728 },
+            { number: 17, title: "Abdominal Wall and Umbilicus", page: 740 },
+            { number: 18, title: "Hernia", page: 751 }
         ];
 
         let pdfDoc = null;
