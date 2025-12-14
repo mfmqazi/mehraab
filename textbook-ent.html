@@ -234,7 +234,7 @@
         let pdfDoc = null, pageNum = 1, pageRendering = false, pageNumPending = null, scale = 1.5;
         const canvas = document.createElement('canvas');
         canvas.id = 'pdf-canvas';
-        const url = 'https://github.com/mfmqazi/mehraab/releases/download/v1.0.0/ent-dhingra.pdf';
+        const url = '/api/pdf-proxy?pdf=ent-dhingra';
         const loadingTask = pdfjsLib.getDocument({ url: url, cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/', cMapPacked: true, disableAutoFetch: false, disableStream: false });
         loadingTask.promise.then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;

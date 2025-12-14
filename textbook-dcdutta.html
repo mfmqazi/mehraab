@@ -288,7 +288,7 @@
         const canvas = document.createElement('canvas');
         canvas.id = 'pdf-canvas';
 
-        const url = 'content/dc-dutta-obstetrics.pdf';
+        const url = '/api/pdf-proxy?pdf=dc-dutta-obstetrics';
 
         // Load PDF with better error handling
         const loadingTask = pdfjsLib.getDocument({
