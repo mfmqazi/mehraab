@@ -134,7 +134,9 @@
         }
 
         #pdf-canvas {
-
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
             height: auto;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
@@ -276,7 +278,7 @@
         const canvas = document.createElement('canvas');
         canvas.id = 'pdf-canvas';
 
-        const url = 'content/dc-dutta-obstetrics.pdf';
+        const url = '/api/pdf-proxy?pdf=dc-dutta-obstetrics';
 
         pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;
