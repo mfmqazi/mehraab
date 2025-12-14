@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ophthalmology - AK Khurana - MBBS Exam Prep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .pdf-container {
+            display: flex;
+            height: 100vh;
+            background: #0a0e27;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: #151933;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .sidebar h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .chapter-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .chapter-item {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .chapter-item:hover {
+            background: rgba(255, 154, 158, 0.1);
+            border-left-color: #ff9a9e;
+        }
+
+        .chapter-item.active {
+            background: rgba(255, 154, 158, 0.2);
+            border-left-color: #ff9a9e;
+        }
+
+        .chapter-number {
+            font-weight: 600;
+            color: #ff9a9e;
+            margin-right: 0.5rem;
+        }
+
+        .chapter-title {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .pdf-viewer {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #1e2442;
+        }
+
+        .pdf-header {
+            padding: 1rem 2rem;
+            background: #151933;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pdf-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin: 0;
+        }
+
+        .pdf-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .pdf-controls button {
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border: none;
+            border-radius: 0.5rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 154, 158, 0.4);
+        }
+
+        .pdf-controls input {
+            width: 60px;
+            padding: 0.5rem;
+            background: #0a0e27;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            color: white;
+            text-align: center;
+        }
+
+        .pdf-content {
+            flex: 1;
+            overflow: auto;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        #pdf-canvas {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #a0aec0;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #ff9a9e;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .back-button {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .pdf-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pdf-container">
+        <div class="sidebar">
+            <h2>📚 Ophthalmology</h2>
+            <p style="color: #a0aec0; font-size: 0.9rem; margin-bottom: 1.5rem;">AK Khurana - 7th Edition</p>
+            <ul class="chapter-list" id="chapterList"></ul>
+        </div>
+        <div class="pdf-viewer">
+            <div class="pdf-header">
+                <div><a href="index.html" class="back-button">← Back to Home</a></div>
+                <h1 id="currentChapter">Ophthalmology - AK Khurana</h1>
+                <div class="pdf-controls">
+                    <button onclick="previousPage()">◀ Previous</button>
+                    <span style="color: #a0aec0;">Page <input type="number" id="pageNum" value="1" min="1"
+                            onchange="goToPage()"> of <span id="pageCount">-</span></span>
+                    <button onclick="nextPage()">Next ▶</button>
+                    <button onclick="zoomIn()">🔍+</button>
+                    <button onclick="zoomOut()">🔍-</button>
+                </div>
+            </div>
+            <div class="pdf-content" id="pdfContent">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading PDF...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        const chapters = [
+            { number: 1, title: "Anatomy and Physiology", page: 1 },
+            { number: 2, title: "Refraction", page: 50 },
+            { number: 3, title: "Diseases of Conjunctiva", page: 100 }
+        ];
+        let pdfDoc = null, pageNum = 1, pageRendering = false, pageNumPending = null, scale = 1.5;
+        const canvas = document.createElement('canvas');
+        canvas.id = 'pdf-canvas';
+        const url = 'content/ophthalmology-khurana.pdf';
+        const loadingTask = pdfjsLib.getDocument({ url: url, cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/', cMapPacked: true, disableAutoFetch: false, disableStream: false });
+        loadingTask.promise.then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+            document.getElementById('pageCount').textContent = pdfDoc.numPages;
+            renderPage(pageNum);
+            loadChapters();
+        }).catch(function (error) {
+            console.error('PDF Loading Error:', error);
+            document.getElementById('pdfContent').innerHTML = `<div class="loading"><p style="color: #f56565; font-size: 1.2rem; margin-bottom: 1rem;">⚠️ Error Loading PDF</p><p style="color: #fff; margin-bottom: 0.5rem;"><strong>Error:</strong> ${error.message}</p><div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem; max-width: 600px;"><p style="color: #a0aec0; font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Possible Solutions:</strong></p><ul style="color: #a0aec0; font-size: 0.9rem; text-align: left; line-height: 1.6;"><li>The PDF file may be corrupted. Try re-downloading it.</li><li>Make sure you're accessing the page through a web server (not file:// protocol)</li><li>Check browser console (F12) for detailed error messages</li><li>Try a different browser or clear your browser cache</li><li>Ensure the PDF file exists at: <code>content/ophthalmology-khurana.pdf</code></li></ul><button onclick="location.reload()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); border: none; border-radius: 0.5rem; color: white; cursor: pointer;">🔄 Retry Loading</button></div></div>`;
+        });
+        function renderPage(num) { pageRendering = true; pdfDoc.getPage(num).then(function (page) { const viewport = page.getViewport({ scale: scale }); canvas.height = viewport.height; canvas.width = viewport.width; const renderContext = { canvasContext: canvas.getContext('2d'), viewport: viewport }; const renderTask = page.render(renderContext); renderTask.promise.then(function () { pageRendering = false; if (pageNumPending !== null) { renderPage(pageNumPending); pageNumPending = null; } document.getElementById('pageNum').value = num; document.getElementById('pdfContent').innerHTML = ''; document.getElementById('pdfContent').appendChild(canvas); }); }); }
+        function queueRenderPage(num) { if (pageRendering) { pageNumPending = num; } else { renderPage(num); } }
+        function previousPage() { if (pageNum <= 1) return; pageNum--; queueRenderPage(pageNum); }
+        function nextPage() { if (pageNum >= pdfDoc.numPages) return; pageNum++; queueRenderPage(pageNum); }
+        function goToPage() { const page = parseInt(document.getElementById('pageNum').value); if (page >= 1 && page <= pdfDoc.numPages) { pageNum = page; queueRenderPage(pageNum); } }
+        function zoomIn() { scale += 0.25; queueRenderPage(pageNum); }
+        function zoomOut() { if (scale > 0.5) { scale -= 0.25; queueRenderPage(pageNum); } }
+        function loadChapters() { const chapterList = document.getElementById('chapterList'); chapterList.innerHTML = chapters.map(chapter => `<li class="chapter-item" onclick="goToChapter(${chapter.page}, '${chapter.title}')"><span class="chapter-number">Ch ${chapter.number}</span><span class="chapter-title">${chapter.title}</span></li>`).join(''); }
+        function goToChapter(page, title) { pageNum = page; queueRenderPage(pageNum); document.getElementById('currentChapter').textContent = title; document.querySelectorAll('.chapter-item').forEach(item => { item.classList.remove('active'); }); event.target.closest('.chapter-item').classList.add('active'); }
+        document.addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft') previousPage(); if (e.key === 'ArrowRight') nextPage(); });
+    </script>
+</body>
+
+</html>

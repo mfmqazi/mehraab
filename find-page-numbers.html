@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Chapter Page Finder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #fa709a;
+        }
+
+        .instructions h3 {
+            margin-bottom: 1rem;
+            color: #fa709a;
+        }
+
+        .instructions ol {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .pdf-viewer {
+            background: #151933;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .controls button {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            border: none;
+            border-radius: 0.5rem;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .controls button:hover {
+            transform: translateY(-2px);
+        }
+
+        .controls input {
+            padding: 0.75rem;
+            background: #0a0e27;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            color: white;
+            width: 100px;
+            text-align: center;
+        }
+
+        .controls select {
+            padding: 0.75rem;
+            background: #0a0e27;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            color: white;
+            min-width: 300px;
+        }
+
+        canvas {
+            max-width: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .output {
+            background: #151933;
+            padding: 2rem;
+            border-radius: 0.5rem;
+        }
+
+        .output h3 {
+            margin-bottom: 1rem;
+            color: #fa709a;
+        }
+
+        .chapter-mapping {
+            background: #0a0e27;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .chapter-item {
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 0.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chapter-item.set {
+            background: rgba(250, 112, 154, 0.1);
+            border-left: 3px solid #fa709a;
+        }
+
+        .set-page-btn {
+            padding: 0.5rem 1rem;
+            background: #fa709a;
+            border: none;
+            border-radius: 0.25rem;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .copy-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 0.5rem;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .success-message {
+            background: rgba(72, 187, 120, 0.2);
+            color: #68d391;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📚 PDF Chapter Page Number Finder</h1>
+
+        <div class="instructions">
+            <h3>How to Use:</h3>
+            <ol>
+                <li>Navigate through the PDF using the controls below</li>
+                <li>When you find a chapter start, select it from the dropdown</li>
+                <li>Click "Set Page for This Chapter" to record the page number</li>
+                <li>Repeat for all chapters</li>
+                <li>Click "Copy JavaScript Array" to get the updated code</li>
+            </ol>
+        </div>
+
+        <div class="pdf-viewer">
+            <div class="controls">
+                <button onclick="previousPage()">◀ Previous</button>
+                <span>Page <input type="number" id="pageNum" value="1" min="1" onchange="goToPage()"> of <span
+                        id="pageCount">-</span></span>
+                <button onclick="nextPage()">Next ▶</button>
+                <button onclick="zoomIn()">🔍+</button>
+                <button onclick="zoomOut()">🔍-</button>
+            </div>
+            <div class="controls">
+                <select id="chapterSelect">
+                    <option value="">Select a chapter...</option>
+                </select>
+                <button onclick="setChapterPage()">Set Page for This Chapter</button>
+            </div>
+            <div id="pdfContent" style="text-align: center; padding: 2rem;">
+                <p>Loading PDF...</p>
+            </div>
+        </div>
+
+        <div class="output">
+            <h3>Chapter Page Mappings:</h3>
+            <div id="chapterList" class="chapter-mapping"></div>
+            <button class="copy-btn" onclick="copyToClipboard()">📋 Copy JavaScript Array</button>
+            <div id="successMessage" class="success-message">✓ Copied to clipboard!</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        const chapters = [
+            { number: 1, title: "Anatomy of Female Pelvis", page: null },
+            { number: 2, title: "Physiology of Menstruation", page: null },
+            { number: 3, title: "Pregnancy Diagnosis", page: null },
+            { number: 4, title: "Antenatal Care", page: null },
+            { number: 5, title: "Maternal Adaptations", page: null },
+            { number: 6, title: "Fetal Growth and Development", page: null },
+            { number: 7, title: "Assessment of Fetal Well-being", page: null },
+            { number: 8, title: "Normal Labor", page: null },
+            { number: 9, title: "Mechanism of Labor", page: null },
+            { number: 10, title: "Management of Normal Labor", page: null },
+            { number: 11, title: "Puerperium", page: null },
+            { number: 12, title: "Abnormal Labor", page: null },
+            { number: 13, title: "Preterm Labor", page: null },
+            { number: 14, title: "Post-term Pregnancy", page: null },
+            { number: 15, title: "Induction of Labor", page: null },
+            { number: 16, title: "Operative Obstetrics", page: null },
+            { number: 17, title: "Antepartum Hemorrhage", page: null },
+            { number: 18, title: "Postpartum Hemorrhage", page: null },
+            { number: 19, title: "Hypertensive Disorders", page: null },
+            { number: 20, title: "Medical Disorders in Pregnancy", page: null },
+            { number: 21, title: "Infections in Pregnancy", page: null },
+            { number: 22, title: "Multiple Pregnancy", page: null },
+            { number: 23, title: "Malpresentations", page: null },
+            { number: 24, title: "Contraception", page: null },
+            { number: 25, title: "Infertility", page: null },
+            { number: 26, title: "Menstrual Disorders", page: null },
+            { number: 27, title: "Genital Infections", page: null },
+            { number: 28, title: "Benign Lesions", page: null },
+            { number: 29, title: "Gynecological Malignancies", page: null },
+            { number: 30, title: "Uterovaginal Prolapse", page: null }
+        ];
+
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+        let scale = 1.5;
+        const canvas = document.createElement('canvas');
+
+        const url = 'content/dc-dutta-obstetrics.pdf';
+
+        const loadingTask = pdfjsLib.getDocument({
+            url: url,
+            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+            cMapPacked: true
+        });
+
+        loadingTask.promise.then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+            document.getElementById('pageCount').textContent = pdfDoc.numPages;
+            renderPage(pageNum);
+            populateChapterSelect();
+            updateChapterList();
+        }).catch(function (error) {
+            document.getElementById('pdfContent').innerHTML = `<p style="color: #f56565;">Error: ${error.message}</p>`;
+        });
+
+        function renderPage(num) {
+            pageRendering = true;
+            pdfDoc.getPage(num).then(function (page) {
+                const viewport = page.getViewport({ scale: scale });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                const renderContext = {
+                    canvasContext: canvas.getContext('2d'),
+                    viewport: viewport
+                };
+                const renderTask = page.render(renderContext);
+                renderTask.promise.then(function () {
+                    pageRendering = false;
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                    document.getElementById('pageNum').value = num;
+                    document.getElementById('pdfContent').innerHTML = '';
+                    document.getElementById('pdfContent').appendChild(canvas);
+                });
+            });
+        }
+
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+
+        function previousPage() {
+            if (pageNum <= 1) return;
+            pageNum--;
+            queueRenderPage(pageNum);
+        }
+
+        function nextPage() {
+            if (pageNum >= pdfDoc.numPages) return;
+            pageNum++;
+            queueRenderPage(pageNum);
+        }
+
+        function goToPage() {
+            const page = parseInt(document.getElementById('pageNum').value);
+            if (page >= 1 && page <= pdfDoc.numPages) {
+                pageNum = page;
+                queueRenderPage(pageNum);
+            }
+        }
+
+        function zoomIn() {
+            scale += 0.25;
+            queueRenderPage(pageNum);
+        }
+
+        function zoomOut() {
+            if (scale > 0.5) {
+                scale -= 0.25;
+                queueRenderPage(pageNum);
+            }
+        }
+
+        function populateChapterSelect() {
+            const select = document.getElementById('chapterSelect');
+            chapters.forEach((chapter, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = `Ch ${chapter.number}: ${chapter.title}`;
+                select.appendChild(option);
+            });
+        }
+
+        function setChapterPage() {
+            const select = document.getElementById('chapterSelect');
+            const index = parseInt(select.value);
+            if (isNaN(index)) {
+                alert('Please select a chapter first');
+                return;
+            }
+            chapters[index].page = pageNum;
+            updateChapterList();
+            // Auto-select next chapter
+            if (index < chapters.length - 1) {
+                select.value = index + 1;
+            }
+        }
+
+        function updateChapterList() {
+            const list = document.getElementById('chapterList');
+            list.innerHTML = chapters.map((chapter, index) => `
+                <div class="chapter-item ${chapter.page !== null ? 'set' : ''}">
+                    <span>Ch ${chapter.number}: ${chapter.title}</span>
+                    <span>${chapter.page !== null ? 'Page ' + chapter.page : 'Not set'}</span>
+                </div>
+            `).join('');
+        }
+
+        function copyToClipboard() {
+            const jsArray = `const chapters = [\n${chapters.map(ch =>
+                `    { number: ${ch.number}, title: "${ch.title}", page: ${ch.page || 1} }`
+            ).join(',\n')}\n];`;
+
+            navigator.clipboard.writeText(jsArray).then(() => {
+                const msg = document.getElementById('successMessage');
+                msg.style.display = 'block';
+                setTimeout(() => msg.style.display = 'none', 3000);
+            });
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') previousPage();
+            if (e.key === 'ArrowRight') nextPage();
+        });
+    </script>
+</body>
+
+</html>

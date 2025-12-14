@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SRB's Manual of Surgery - MBBS Exam Prep</title>
+    <title>Medicine - Archit Boloor - MBBS Exam Prep</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -197,23 +197,19 @@
 
 <body>
     <div class="pdf-container">
-        <!-- Sidebar with Chapters -->
         <div class="sidebar">
-            <h2>📚 SRB Surgery</h2>
-            <p style="color: #a0aec0; font-size: 0.9rem; margin-bottom: 1.5rem;">6th Edition</p>
+            <h2>📚 Medicine</h2>
+            <p style="color: #a0aec0; font-size: 0.9rem; margin-bottom: 1.5rem;">Archit Boloor - 3rd Edition</p>
 
-            <ul class="chapter-list" id="chapterList">
-                <!-- Chapters will be loaded here -->
-            </ul>
+            <ul class="chapter-list" id="chapterList"></ul>
         </div>
 
-        <!-- PDF Viewer -->
         <div class="pdf-viewer">
             <div class="pdf-header">
                 <div>
                     <a href="index.html" class="back-button">← Back to Home</a>
                 </div>
-                <h1 id="currentChapter">SRB's Manual of Surgery</h1>
+                <h1 id="currentChapter">Medicine - Archit Boloor</h1>
                 <div class="pdf-controls">
                     <button onclick="previousPage()">◀ Previous</button>
                     <span style="color: #a0aec0;">
@@ -235,46 +231,16 @@
         </div>
     </div>
 
-    <!-- PDF.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
-        // Configure PDF.js
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
+        // Placeholder chapters - update with actual TOC
         const chapters = [
-            { number: 1, title: "General Surgery", page: 13 },
-            { number: 2, title: "Faciomaxillary Diseases", page: 350 },
-            { number: 3, title: "Oral Cavity", page: 368 },
-            { number: 4, title: "Salivary Glands", page: 404 },
-            { number: 5, title: "Neck", page: 426 },
-            { number: 6, title: "Thyroid", page: 455 },
-            { number: 7, title: "Parathyroids and Adrenals", page: 501 },
-            { number: 8, title: "Breast", page: 516 },
-            { number: 9, title: "Peritoneum", page: 569 },
-            { number: 10, title: "Abdominal Tuberculosis", page: 585 },
-            { number: 11, title: "Liver", page: 596 },
-            { number: 12, title: "Gallbladder", page: 635 },
-            { number: 13, title: "Spleen", page: 672 },
-            { number: 14, title: "Pancreas", page: 684 },
-            { number: 15, title: "Retroperitoneal Space", page: 721 },
-            { number: 16, title: "Differential Diagnosis of Mass Abdomen", page: 728 },
-            { number: 17, title: "Abdominal Wall and Umbilicus", page: 740 },
-            { number: 18, title: "Hernia", page: 751 },
-            { number: 19, title: "Oesophagus", page: 788 },
-            { number: 20, title: "Stomach", page: 816 },
-            { number: 21, title: "Small Intestine", page: 864 },
-            { number: 22, title: "Large Intestine", page: 888 },
-            { number: 23, title: "Intestinal Obstruction", page: 920 },
-            { number: 24, title: "Appendix", page: 940 },
-            { number: 25, title: "Rectum and Anal Canal", page: 954 },
-            { number: 26, title: "Urology", page: 996 },
-            { number: 27, title: "Neurosurgery", page: 1088 },
-            { number: 28, title: "Thorax", page: 1109 },
-            { number: 29, title: "Cardiac Surgery", page: 1130 },
-            { number: 30, title: "Adjuvant Therapy", page: 1138 },
-            { number: 31, title: "Advanced Imaging Methods", page: 1150 },
-            { number: 32, title: "Operative Surgery", page: 1156 },
-            { number: 33, title: "Miscellaneous", page: 1180 }
+            { number: 1, title: "Chapter 1", page: 1 },
+            { number: 2, title: "Chapter 2", page: 50 },
+            { number: 3, title: "Chapter 3", page: 100 }
+            // Add more chapters with correct page numbers
         ];
 
         let pdfDoc = null;
@@ -285,10 +251,8 @@
         const canvas = document.createElement('canvas');
         canvas.id = 'pdf-canvas';
 
-        // Load PDF
-        const url = 'content/srb-surgery-6th.pdf';
+        const url = 'content/medicine-archit-boloor.pdf';
 
-        // Load PDF with better error handling
         const loadingTask = pdfjsLib.getDocument({
             url: url,
             cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
@@ -300,11 +264,7 @@
         loadingTask.promise.then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;
             document.getElementById('pageCount').textContent = pdfDoc.numPages;
-
-            // Render first page
             renderPage(pageNum);
-
-            // Load chapters
             loadChapters();
         }).catch(function (error) {
             console.error('PDF Loading Error:', error);
@@ -319,7 +279,7 @@
                             <li>Make sure you're accessing the page through a web server (not file:// protocol)</li>
                             <li>Check browser console (F12) for detailed error messages</li>
                             <li>Try a different browser or clear your browser cache</li>
-                            <li>Ensure the PDF file exists at: <code>content/srb-surgery-6th.pdf</code></li>
+                            <li>Ensure the PDF file exists at: <code>content/medicine-archit-boloor.pdf</code></li>
                         </ul>
                         <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 0.5rem; color: white; cursor: pointer;">
                             🔄 Retry Loading
@@ -331,27 +291,21 @@
 
         function renderPage(num) {
             pageRendering = true;
-
             pdfDoc.getPage(num).then(function (page) {
                 const viewport = page.getViewport({ scale: scale });
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
-
                 const renderContext = {
                     canvasContext: canvas.getContext('2d'),
                     viewport: viewport
                 };
-
                 const renderTask = page.render(renderContext);
                 renderTask.promise.then(function () {
                     pageRendering = false;
-
                     if (pageNumPending !== null) {
                         renderPage(pageNumPending);
                         pageNumPending = null;
                     }
-
-                    // Update UI
                     document.getElementById('pageNum').value = num;
                     document.getElementById('pdfContent').innerHTML = '';
                     document.getElementById('pdfContent').appendChild(canvas);
@@ -413,15 +367,12 @@
             pageNum = page;
             queueRenderPage(pageNum);
             document.getElementById('currentChapter').textContent = title;
-
-            // Update active chapter
             document.querySelectorAll('.chapter-item').forEach(item => {
                 item.classList.remove('active');
             });
             event.target.closest('.chapter-item').classList.add('active');
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', function (e) {
             if (e.key === 'ArrowLeft') previousPage();
             if (e.key === 'ArrowRight') nextPage();

@@ -273,15 +273,39 @@
 
         const url = 'content/ghai-pediatrics-8th.pdf';
 
-        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
+        // Load PDF with better error handling
+        const loadingTask = pdfjsLib.getDocument({
+            url: url,
+            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+            cMapPacked: true,
+            disableAutoFetch: false,
+            disableStream: false
+        });
+
+        loadingTask.promise.then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;
             document.getElementById('pageCount').textContent = pdfDoc.numPages;
             renderPage(pageNum);
             loadChapters();
         }).catch(function (error) {
+            console.error('PDF Loading Error:', error);
             document.getElementById('pdfContent').innerHTML = `
                 <div class="loading">
-                    <p style="color: #f56565;">Error loading PDF: ${error.message}</p>
+                    <p style="color: #f56565; font-size: 1.2rem; margin-bottom: 1rem;">⚠️ Error Loading PDF</p>
+                    <p style="color: #fff; margin-bottom: 0.5rem;"><strong>Error:</strong> ${error.message}</p>
+                    <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem; max-width: 600px;">
+                        <p style="color: #a0aec0; font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Possible Solutions:</strong></p>
+                        <ul style="color: #a0aec0; font-size: 0.9rem; text-align: left; line-height: 1.6;">
+                            <li>The PDF file may be corrupted. Try re-downloading it.</li>
+                            <li>Make sure you're accessing the page through a web server (not file:// protocol)</li>
+                            <li>Check browser console (F12) for detailed error messages</li>
+                            <li>Try a different browser or clear your browser cache</li>
+                            <li>Ensure the PDF file exists at: <code>content/ghai-pediatrics-8th.pdf</code></li>
+                        </ul>
+                        <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border: none; border-radius: 0.5rem; color: white; cursor: pointer;">
+                            🔄 Retry Loading
+                        </button>
+                    </div>
                 </div>
             `;
         });
